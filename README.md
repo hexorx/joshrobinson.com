@@ -37,8 +37,21 @@ Requires Node 22.12+.
 | `npm run build` | Static build to `./dist/` |
 | `npm run preview` | Preview the build locally |
 
-## Deployment (not set up)
+## Hosting decision: Cloudflare Workers (static assets)
 
-The plan is static hosting on Cloudflare (Workers Static Assets or Pages), serving `dist/`. DNS for joshrobinson.com is already on Cloudflare (see HEX-146). Nothing deploys from this repo yet; any deploy or DNS change needs Josh's approval.
+Decided 2026-09-28: joshrobinson.com will be hosted on **Cloudflare Workers with static assets**, not Vercel. Why:
+
+- **Same account as DNS and proxy.** The joshrobinson.com zone is already active on Cloudflare (Free plan) with DNS and proxy in place (see HEX-146), so no nameserver moves, no DNS-only workarounds, no second SSL issuer.
+- **No commercial-use restriction.** Vercel's free Hobby plan is non-commercial only; Cloudflare's free tier has no such rule, which matters for a personal-brand site.
+- **Free static hosting with no request caps.** Requests to static assets are free and unlimited, with no storage charge.
+- **Astro static deploy, no adapter.** `npm run build` produces `dist/`, which Workers serves directly.
+
+## Deployment checklist (not done; waits for Josh's go)
+
+Nothing deploys from this repo yet. Do not change Cloudflare settings until Josh approves.
+
+1. Connect `hexorx/joshrobinson.com` to a new Cloudflare Workers project (Workers Builds, build command `npm run build`, assets directory `dist/`).
+2. Attach `joshrobinson.com` (and `www` if wanted) as a custom domain on that Worker.
+3. Verify the build and the live site: pages, `/rss.xml`, sitemap, `/resume`, images, HTTPS.
 
 The previous 2022 Nuxt starter was replaced in this commit and remains in git history.

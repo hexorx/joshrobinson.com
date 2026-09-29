@@ -1,0 +1,123 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { personJsonLd, resume } from '../lib/resume';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Resume | ${SITE_TITLE}`} description={SITE_DESCRIPTION} jsonLd={personJsonLd(resume)} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="resume">
+				<header>
+					<h1>{resume.name}</h1>
+					<p class="headline">{resume.headline}</p>
+					<p class="meta">
+						{resume.location}
+						{resume.email && <> · <a href={`mailto:${resume.email}`}>{resume.email}</a></>}
+						{resume.profiles.map((p) => <> · <a href={p.url}>{p.network}</a></>)}
+					</p>
+					<button class="no-print" onclick="window.print()">Print / save as PDF</button>
+				</header>
+
+				<section>
+					<h2>Summary</h2>
+					<p>{resume.summary}</p>
+				</section>
+
+				<section>
+					<h2>Experience</h2>
+					{
+						resume.experience.map((job) => (
+							<div class="entry">
+								<h3>
+									{job.role}, {job.company}
+								</h3>
+								<p class="dates">
+									{job.start} to {job.end}
+									{job.location && ` · ${job.location}`}
+								</p>
+								<ul>
+									{job.highlights.map((h) => (
+										<li>{h}</li>
+									))}
+								</ul>
+							</div>
+						))
+					}
+				</section>
+
+				<section>
+					<h2>Projects</h2>
+					<ul>
+						{
+							resume.projects.map((p) => (
+								<li>
+									{p.url ? <a href={p.url}>{p.name}</a> : p.name}: {p.description}
+								</li>
+							))
+						}
+					</ul>
+				</section>
+
+				<section>
+					<h2>Skills</h2>
+					<ul>
+						{
+							resume.skills.map((s) => (
+								<li>
+									<strong>{s.group}:</strong> {s.items.join(', ')}
+								</li>
+							))
+						}
+					</ul>
+				</section>
+
+				<section>
+					<h2>Education</h2>
+					<ul>
+						{
+							resume.education.map((e) => (
+								<li>
+									{e.credential}, {e.school}
+									{e.year && ` (${e.year})`}
+								</li>
+							))
+						}
+					</ul>
+				</section>
+			</article>
+			<style>
+				.resume .headline {
+					font-size: 1.25em;
+					margin: 0;
+				}
+				.resume .meta,
+				.resume .dates {
+					color: rgb(var(--gray));
+				}
+				.resume .entry h3 {
+					margin-bottom: 0;
+				}
+				@media print {
+					:global(header:not(.resume header)),
+					:global(footer),
+					.no-print {
+						display: none !important;
+					}
+					:global(main) {
+						width: 100%;
+						padding: 0;
+					}
+				}
+			</style>
+		</main>
+		<Footer />
+	</body>
+</html>

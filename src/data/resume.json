@@ -1,0 +1,51 @@
+{
+  "_comment": "PLACEHOLDER resume data. Replace every value with Josh's real details. The /resume page and its Person JSON-LD are generated from this file.",
+  "name": "Josh Robinson",
+  "headline": "[Placeholder headline, e.g. role and focus]",
+  "location": "[Placeholder city, state]",
+  "email": "",
+  "url": "https://joshrobinson.com",
+  "summary": "[Placeholder: two or three sentences on what Josh does and the kind of work he wants.]",
+  "profiles": [
+    {
+      "network": "GitHub",
+      "url": "https://github.com/hexorx"
+    }
+  ],
+  "experience": [
+    {
+      "company": "[Placeholder company]",
+      "role": "[Placeholder role]",
+      "start": "2020",
+      "end": "Present",
+      "location": "[Placeholder]",
+      "highlights": [
+        "[Placeholder accomplishment with a measurable result]",
+        "[Placeholder accomplishment]"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "[Placeholder project]",
+      "url": "",
+      "description": "[Placeholder one-line description]"
+    }
+  ],
+  "skills": [
+    {
+      "group": "[Placeholder group]",
+      "items": [
+        "[Skill]",
+        "[Skill]"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "[Placeholder school]",
+      "credential": "[Placeholder degree or certificate]",
+      "year": ""
+    }
+  ]
+}

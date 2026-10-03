@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test": "playwright test",
+    "test": "node --test tests/writing-unit.mjs && playwright test",
     "format:check": "prettier --plugin prettier-plugin-astro --check \"src/**/*.{astro,css,ts}\" \"tests/**/*.ts\" \"*.{mjs,ts}\" \".github/workflows/*.yml\""
   },
   "dependencies": {

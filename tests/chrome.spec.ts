@@ -56,6 +56,7 @@ for (const width of [1440, 390]) {
     }
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(() => document.fonts.ready);
     await page.screenshot({
       path: `docs/screenshots/home-${width}.png`,
       fullPage: true,
@@ -76,6 +77,7 @@ test("keyboard palette filters, traps focus, navigates, and restores focus", asy
   page,
 }) => {
   await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
   const trigger = page.locator("[data-command-open]");
   await trigger.focus();
   await page.keyboard.press("Control+k");
@@ -136,8 +138,14 @@ test("mobile button, placeholder actions, and reduced motion", async ({
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
   await page.locator("[data-command-open]").click();
   const dialog = page.getByRole("dialog");
+  await page.evaluate(() => {
+    document.querySelector<HTMLDialogElement>(
+      "#command-palette",
+    )!.dataset.email = "";
+  });
   await dialog.getByRole("button", { name: /Copy email/ }).click();
   await expect(page.locator("#command-status")).toContainText(
     "Email is awaiting Josh",
@@ -164,6 +172,7 @@ test("normal-speed typing announces final counts without overwriting action feed
   page,
 }) => {
   await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
   await page.locator("[data-command-open]").click();
   const search = page.getByRole("searchbox");
   const count = page.locator("#command-count");
@@ -176,6 +185,11 @@ test("normal-speed typing announces final counts without overwriting action feed
   await search.pressSequentially("xxxxx", { delay: 180 });
   await expect(count).toHaveText("0 matching commands.");
   await search.fill("");
+  await page.evaluate(() => {
+    document.querySelector<HTMLDialogElement>(
+      "#command-palette",
+    )!.dataset.email = "";
+  });
   await page.getByRole("button", { name: /Copy email/ }).click();
   await expect(page.locator("#command-status")).toContainText(
     "Email is awaiting Josh",

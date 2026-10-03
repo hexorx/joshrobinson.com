@@ -23,7 +23,7 @@ ink; and prevents role rows and sidebar sections from splitting across pages.
 - `node --test tests/resume.test.mjs`: two source/metadata checks.
 - `npm test`: shared chrome, keyboard palette and career browser coverage.
 - Resume axe WCAG A/AA checks at 1440×900 and 390×900: no violations.
-- Lighthouse accessibility: desktop 100, mobile 96 (threshold 95).
+- Lighthouse accessibility: desktop 100, mobile 100 (threshold 95).
 - Schema.org hosted validator: one Person, zero errors and zero warnings.
 - Chromium A4 PDF: two pages, intact role rows. Screenshots and PDF are in
   `docs/screenshots/resume-*`; compact validator/Lighthouse reports are in `docs`.

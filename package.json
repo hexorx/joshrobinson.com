@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test": "playwright test"
+    "test": "playwright test",
+    "format:check": "prettier --plugin prettier-plugin-astro --check \"src/**/*.{astro,css,ts}\" \"tests/**/*.ts\" \"*.{mjs,ts}\" \".github/workflows/*.yml\""
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",

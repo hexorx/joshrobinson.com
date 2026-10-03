@@ -1,47 +1,61 @@
 ---
-import Kicker from '../components/Kicker.astro';
-import Panel from '../components/Panel.astro';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import FormattedDate from '../components/FormattedDate.astro';
-import { getPublishedPosts } from '../lib/posts';
+import Kicker from "../components/Kicker.astro";
+import Panel from "../components/Panel.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import FormattedDate from "../components/FormattedDate.astro";
+import { getPublishedPosts } from "../lib/posts";
 const recent = (await getPublishedPosts()).slice(0, 5);
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main id="main-content" tabindex="-1">
-			<section class="intro hairline-grid">
-                <Kicker number="00">hello / world</Kicker>
-				<h1>Hi, I'm Josh Robinson.</h1>
-				<!-- PLACEHOLDER: replace with Josh's real intro. -->
-				<p class="placeholder lede">[Placeholder intro: who Josh is, what he works on, and what he's looking for.]</p>
-				<p><a href="/resume">Read my resume</a> · <a href="/about">More about me</a></p>
-			</section>
-			<section id="work"><Kicker number="01">selected work</Kicker><Panel><h2 slot="heading">Selected work</h2><p class="placeholder">[Placeholder: selected projects will be added here.]</p></Panel></section>
-            <section>
-                <Kicker number="02">writing</Kicker>
-				<h2>Recent writing</h2>
-				<ul>
-					{
-						recent.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>{' '}
-								<FormattedDate date={post.data.pubDate} />
-							</li>
-						))
-					}
-				</ul>
-				<p><a href="/blog">All posts</a> · <a href="/rss.xml">RSS</a></p>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <section class="intro hairline-grid">
+        <Kicker number="00">hello / world</Kicker>
+        <h1>Hi, I'm Josh Robinson.</h1>
+        <!-- PLACEHOLDER: replace with Josh's real intro. -->
+        <p class="placeholder lede">
+          [Placeholder intro: who Josh is, what he works on, and what he's
+          looking for.]
+        </p>
+        <p>
+          <a href="/resume">Read my resume</a> ·{" "}
+          <a href="/about">More about me</a>
+        </p>
+      </section>
+      <section id="work">
+        <Kicker number="01">selected work</Kicker>
+        <Panel>
+          <h2 slot="heading">Selected work</h2>
+          <p class="placeholder">
+            [Placeholder: selected projects will be added here.]
+          </p>
+        </Panel>
+      </section>
+      <section>
+        <Kicker number="02">writing</Kicker>
+        <h2>Recent writing</h2>
+        <ul>
+          {recent.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>{" "}
+              <FormattedDate date={post.data.pubDate} />
+            </li>
+          ))}
+        </ul>
+        <p>
+          <a href="/blog">All posts</a> · <a href="/rss.xml">RSS</a>
+        </p>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>

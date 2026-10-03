@@ -24,8 +24,16 @@ The existing resume data contains no email or LinkedIn profile. Header/footer co
 
 ## Verification
 
-Run `npm ci`, `npm run check`, `npm run build`, `npx playwright install --with-deps chromium`, and `npm test`. Browser tests serve the built `dist` via a Playwright-managed loopback preview. They check all seven existing pages at 1440px and 390px, one H1, shared chrome, overflow, WCAG A/AA axe rules, local font requests, keyboard filtering/focus, draft exclusion, clipboard feedback, and placeholder download. They also capture home and palette screenshots in `docs/screenshots`.
+Run `npm ci`, `npm run format:check`, `npm run check`, `npm run build`, `npx playwright install --with-deps chromium`, and `npm test`. Browser tests serve the built `dist` via a Playwright-managed loopback preview. They check all seven existing pages at 1440px and 390px, one H1, shared chrome, overflow, WCAG A/AA axe rules, local font requests, keyboard filtering/focus, draft exclusion, clipboard feedback, and placeholder download. They also capture home and palette screenshots in `docs/screenshots`.
 
 Automated accessibility checks and keyboard tests do not replace an independent screen reader review. The reviewer should confirm the dialog name, search label, live feedback, and focus return using a screen reader.
 
 No deploy is part of this PR. Roll back by reverting its merge commit. Existing resume schema deprecation hints and dependency audit findings remain outside this change.
+
+### Review correction
+
+The first handoff incorrectly reported a passing formatting check. The independent reproduction (`git diff --name-only origin/main...HEAD -- '*.astro' '*.css' '*.ts' '*.mjs' '*.yml' | xargs npx prettier --plugin prettier-plugin-astro --check`) found eight Astro files. They are now formatted; `npm run format:check` explicitly loads the Astro plugin and checks source, browser tests, config and CI on every PR.
+
+For whitespace verification use `git diff --check origin/main...HEAD -- . ":(exclude)public/cv-placeholder.pdf"`. The PDF cross-reference records intentionally contain fixed-width trailing spaces.
+
+Screen-reader spoken announcements remain pending independent verification. No reader is installed in this runtime; axe and browser accessibility-tree evidence must not be recorded as a spoken-reader pass. Record reader/browser versions, announced dialog and search labels, filtered match count, placeholder/copy feedback, Escape and returned focus before approval.

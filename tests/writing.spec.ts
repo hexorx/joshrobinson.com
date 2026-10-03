@@ -17,7 +17,7 @@ for (const width of [1440, 390]) {
       "width",
       width === 1440 ? "220px" : "170px",
     );
-    await expect(page.locator(".writing-rows li")).toHaveCount(1);
+    await expect(page.locator(".writing-rows > li")).toHaveCount(1);
     await page.getByRole("link", { name: "#meta (1)" }).click();
     await expect(page).toHaveURL(/\/tags\/meta\//);
     await page.locator(".writing-rows .post-title").click();

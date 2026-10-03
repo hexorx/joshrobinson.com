@@ -16,7 +16,7 @@ All existing pages use the same `Header` (including `CommandPalette`) and `Foote
 
 ## Palette and placeholders
 
-Open the labelled native modal dialog with the visible search button or Cmd/Ctrl+K. Search filters pages, published posts, and actions. Arrow keys move through results, Enter activates, Tab/Shift+Tab wrap within the dialog, and Esc restores focus to the opener. Match counts and clipboard feedback use a live status region.
+Open the labelled native modal dialog with the visible search button or Cmd/Ctrl+K. Search filters pages, published posts, and actions. Arrow keys move through results, Enter activates, Tab/Shift+Tab wrap within the dialog, and Esc restores focus to the opener. Match counts use a separate atomic live status region, updated 500ms after typing stops so reader key echo can finish. Filtering stays immediate. Closing or copying cancels pending counts; action feedback uses its own region.
 
 The existing resume data contains no email or LinkedIn profile. Header/footer contact links point to an explicit About/contact placeholder. Copy email explains the missing value; adding `email` in `src/data/resume.json` enables real copying without another component change. Adding a LinkedIn entry to `profiles` enables its real footer link. No contact values were invented.
 
@@ -36,4 +36,10 @@ The first handoff incorrectly reported a passing formatting check. The independe
 
 For whitespace verification use `git diff --check origin/main...HEAD -- . ":(exclude)public/cv-placeholder.pdf"`. The PDF cross-reference records intentionally contain fixed-width trailing spaces.
 
-Screen-reader spoken announcements remain pending independent verification. No reader is installed in this runtime; axe and browser accessibility-tree evidence must not be recorded as a spoken-reader pass. Record reader/browser versions, announced dialog and search labels, filtered match count, placeholder/copy feedback, Escape and returned focus before approval.
+Opi recorded real Orca announcements on the previous head: four checks passed, while counts at normal typing speed failed. The current revision still needs a fresh real-reader pass; axe and browser accessibility-tree evidence do not establish spoken output. Record reader/browser versions and the exact SHA with dialog/search labels, filtered match counts, placeholder/copy feedback, Escape and focus return before approval.
+
+### S01 and reusable mascot slots
+
+`MascotSlot` separates intrinsic `assetWidth`/`assetHeight` from desktop and mobile container dimensions. It supports transparent containment, optional full-body bottom alignment, hex clipping, supplied slot/pose/TBD labels and compact avatars. Header S01 is 34×34 CSS pixels at both breakpoints, with a 96×96 WebP resized directly from the approved kit's `kit/avatars/hexorx-avatar-512.png`; no art was generated or altered beyond resizing. The existing kit variant is allowed by Josh's blocking directive. The compact avatar keeps its full pending-art label in a tooltip and visually hidden text rather than a label larger than the nav; larger placeholder slots have dashed lime frames and visible labels. Final art swaps retain the container dimensions.
+
+Reader evidence for `54ff4e0` in HEX-447 passed 4/5 checks; ordinary-speed positive/zero counts failed. This revision addresses that finding, but requires a new actual Orca run and independent exact-head approval. Prior screenshots show the pre-S01 header; regenerate 1440/390 screenshots before acceptance.

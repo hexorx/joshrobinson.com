@@ -1,5 +1,6 @@
 ---
 import CommandPalette from "./CommandPalette.astro";
+import MascotSlot from "./MascotSlot.astro";
 import { resume } from "../lib/resume";
 const path = Astro.url.pathname;
 const nav = [
@@ -25,7 +26,22 @@ const nav = [
 <header class="site-header">
   <nav class="container" aria-label="Primary">
     <a class="logo" href="/" aria-label="Josh Robinson home">
-      <i aria-hidden="true">JR</i>josh<span>@</span>robinson<span>:~</span>
+      <span class="nav-avatar" aria-hidden="true">
+        <MascotSlot
+          slotId="S01"
+          pose="head, front"
+          src="/hexorx/hexorx-S01-head.webp"
+          assetWidth={96}
+          assetHeight={96}
+          desktopWidth={34}
+          desktopHeight={34}
+          mobileWidth={34}
+          mobileHeight={34}
+          hex
+          compact
+        />
+      </span>
+      josh<span>@</span>robinson<span>:~</span>
     </a>
     <ul>
       {nav.map((item) => (
@@ -82,17 +98,9 @@ const nav = [
     text-decoration: none;
     white-space: nowrap;
   }
-  .logo i {
-    display: grid;
-    place-items: center;
-    width: 24px;
-    height: 24px;
+  .nav-avatar {
+    flex: 0 0 34px;
     margin-right: 10px;
-    background: var(--acc);
-    color: var(--acc-ink);
-    border-radius: 6px;
-    font: 700 11px var(--mono);
-    font-style: normal;
   }
   .logo span {
     color: var(--dim);

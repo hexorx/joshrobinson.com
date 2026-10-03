@@ -85,6 +85,13 @@ const pages = [
   <p class="empty" hidden>
     No matching commands.
   </p>
+  <p
+    id="command-count"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    class="sr-only"
+  ></p>
   <p id="command-status" role="status" aria-live="polite" class="sr-only"></p>
   <p id="command-help">↑ ↓ move · Tab navigate · Enter select · Esc close</p>
 </dialog>
@@ -92,6 +99,12 @@ const pages = [
   const dialog = document.querySelector<HTMLDialogElement>("#command-palette")!;
   const search = dialog.querySelector<HTMLInputElement>("#command-search")!;
   const status = dialog.querySelector<HTMLElement>("#command-status")!;
+  const countStatus = dialog.querySelector<HTMLElement>("#command-count")!;
+  let countTimer: ReturnType<typeof setTimeout> | undefined;
+  const cancelCount = () => {
+    clearTimeout(countTimer);
+    countStatus.textContent = "";
+  };
   let opener: HTMLElement | null = null;
   const items = Array.from(
     dialog.querySelectorAll<HTMLElement>("[data-command-item]"),
@@ -118,7 +131,12 @@ const pages = [
       });
     const count = results().length;
     dialog.querySelector<HTMLElement>(".empty")!.hidden = count !== 0;
-    status.textContent = `${count} matching commands.`;
+    // Let key echo finish before the reader receives the final result count.
+    // Clearing also lets the same count be announced for a different query.
+    cancelCount();
+    countTimer = setTimeout(() => {
+      if (dialog.open) countStatus.textContent = `${count} matching commands.`;
+    }, 500);
   };
   const open = () => {
     if (dialog.open) return;
@@ -126,6 +144,7 @@ const pages = [
       document.activeElement instanceof HTMLElement
         ? document.activeElement
         : null;
+    status.textContent = "";
     search.value = "";
     filter();
     dialog.showModal();
@@ -137,7 +156,10 @@ const pages = [
   dialog
     .querySelector("[data-command-close]")!
     .addEventListener("click", () => dialog.close());
-  dialog.addEventListener("close", () => opener?.focus());
+  dialog.addEventListener("close", () => {
+    cancelCount();
+    opener?.focus();
+  });
   document.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
@@ -182,6 +204,7 @@ const pages = [
   dialog
     .querySelector("[data-copy-email]")!
     .addEventListener("click", async () => {
+      cancelCount();
       if (!dialog.dataset.email) {
         status.textContent = "Email is awaiting Josh. See About / contact.";
         return;

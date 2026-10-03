@@ -20,6 +20,21 @@ for (const width of [1440, 390]) {
     for (const route of routes) {
       await page.goto(route);
       await expect(page.locator("h1")).toHaveCount(1);
+      const avatar = page.locator('[data-mascot-slot="S01"]');
+      await expect(avatar).toHaveCSS("width", "34px");
+      await expect(avatar).toHaveCSS("height", "34px");
+      await expect(avatar.locator("img")).toHaveAttribute("width", "96");
+      await expect(avatar.locator("img")).toHaveAttribute("height", "96");
+      expect(
+        await avatar
+          .locator("img")
+          .evaluate(
+            (img: HTMLImageElement) =>
+              img.complete &&
+              img.naturalWidth === 96 &&
+              img.naturalHeight === 96,
+          ),
+      ).toBeTruthy();
       await expect(
         page.getByRole("navigation", { name: "Primary" }),
       ).toBeVisible();
@@ -124,7 +139,7 @@ test("mobile button, placeholder actions, and reduced motion", async ({
   await page.locator("[data-command-open]").click();
   const dialog = page.getByRole("dialog");
   await dialog.getByRole("button", { name: /Copy email/ }).click();
-  await expect(page.getByRole("status")).toContainText(
+  await expect(page.locator("#command-status")).toContainText(
     "Email is awaiting Josh",
   );
   await page.evaluate(() => {
@@ -137,10 +152,41 @@ test("mobile button, placeholder actions, and reduced motion", async ({
     });
   });
   await dialog.getByRole("button", { name: /Copy email/ }).click();
-  await expect(page.getByRole("status")).toHaveText("Email copied.");
+  await expect(page.locator("#command-status")).toHaveText("Email copied.");
   const downloadPromise = page.waitForEvent("download");
   await dialog.getByRole("link", { name: /Download CV/ }).click();
   expect((await downloadPromise).suggestedFilename()).toBe(
     "cv-placeholder.pdf",
   );
+});
+
+test("normal-speed typing announces final counts without overwriting action feedback", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.locator("[data-command-open]").click();
+  const search = page.getByRole("searchbox");
+  const count = page.locator("#command-count");
+  await search.pressSequentially("resume", { delay: 180 });
+  await expect(count).toHaveText("1 matching commands.");
+  await search.fill("");
+  await search.pressSequentially("zzzzz", { delay: 180 });
+  await expect(count).toHaveText("0 matching commands.");
+  await search.fill("");
+  await search.pressSequentially("xxxxx", { delay: 180 });
+  await expect(count).toHaveText("0 matching commands.");
+  await search.fill("");
+  await page.getByRole("button", { name: /Copy email/ }).click();
+  await expect(page.locator("#command-status")).toContainText(
+    "Email is awaiting Josh",
+  );
+  await page.waitForTimeout(650);
+  await expect(count).toBeEmpty();
+  await expect(page.locator("#command-status")).toContainText(
+    "Email is awaiting Josh",
+  );
+  await search.fill("resume");
+  await page.getByRole("button", { name: "Close command palette" }).click();
+  await page.waitForTimeout(650);
+  await expect(count).toBeEmpty();
 });

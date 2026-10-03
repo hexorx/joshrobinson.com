@@ -1,0 +1,85 @@
+---
+interface Props {
+  slotId: string;
+  pose: string;
+  src: string;
+  assetWidth: number;
+  assetHeight: number;
+  desktopWidth: number;
+  desktopHeight: number;
+  mobileWidth?: number;
+  mobileHeight?: number;
+  bottomAligned?: boolean;
+  hex?: boolean;
+  compact?: boolean;
+  alt?: string;
+}
+const {
+  slotId,
+  pose,
+  src,
+  assetWidth,
+  assetHeight,
+  desktopWidth,
+  desktopHeight,
+  mobileWidth = desktopWidth,
+  mobileHeight = desktopHeight,
+  bottomAligned = false,
+  hex = false,
+  compact = false,
+  alt = `hexorx ${slotId}: ${pose}; final art pending`,
+} = Astro.props;
+const label = `HEXORX · POSE: ${pose.toUpperCase()} · TBD`;
+---
+
+<span
+  class:list={["mascot-slot", { hex, compact }]}
+  data-mascot-slot={slotId}
+  title={`${slotId} · ${label}`}
+  style={`--slot-w:${desktopWidth}px;--slot-h:${desktopHeight}px;--slot-mobile-w:${mobileWidth}px;--slot-mobile-h:${mobileHeight}px;--slot-align:${bottomAligned ? "bottom" : "center"}`}
+>
+  <img src={src} width={assetWidth} height={assetHeight} alt={alt} />
+  <span class:list={["slot-label", { "sr-only": compact }]}>
+    {slotId} · {label}
+  </span>
+</span>
+<style>
+  .mascot-slot {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--slot-w);
+    height: var(--slot-h);
+    max-width: 100%;
+    border: 1px dashed var(--acc);
+    vertical-align: bottom;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center var(--slot-align);
+  }
+  .hex img {
+    clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+  }
+  .compact {
+    border: 0;
+  }
+  .slot-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    background: var(--bg);
+    color: var(--acc);
+    font: 10px/1.4 var(--mono);
+  }
+  @media (max-width: 720px) {
+    .mascot-slot {
+      width: var(--slot-mobile-w);
+      height: var(--slot-mobile-h);
+    }
+  }
+</style>

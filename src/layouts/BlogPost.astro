@@ -7,14 +7,14 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import TagList from '../components/TagList.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { socialImage?: { src: string; width: number; height: number } };
 
-const { title, description, pubDate, updatedDate, heroImage, tags = [], draft } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags = [], draft, socialImage } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={socialImage} type="article" />
 		<style>
 			main {
 				width: calc(100% - 2em);

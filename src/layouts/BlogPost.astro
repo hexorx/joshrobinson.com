@@ -16,11 +16,6 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], draft } 
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
 			.hero-image {
 				width: 100%;
 			}
@@ -31,11 +26,13 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], draft } 
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
+				width: 680px;
+				max-width: 100%;
 				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				padding: 24px 0;
+                font-size: 18px;
+                line-height: 1.75;
+				color: var(--ink);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -48,7 +45,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], draft } 
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: var(--mute);
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -58,7 +55,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], draft } 
 
 	<body>
 		<Header />
-		<main>
+		<main id="main-content" tabindex="-1">
 			<article>
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}

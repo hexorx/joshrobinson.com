@@ -14,12 +14,13 @@ import portrait from '../assets/blog-placeholder-about.jpg';
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content" tabindex="-1">
 			<h1>About</h1>
 			<Image src={portrait} alt="Placeholder image" width={720} />
 			<!-- PLACEHOLDER: replace with Josh's real bio and a real photo (src/assets/). -->
 			<p>[Placeholder bio. A few paragraphs on background, interests, and how to get in touch.]</p>
-		</main>
+		<section id="contact"><h2>Get in touch</h2><p class="placeholder">[Placeholder: contact email and LinkedIn profile awaiting Josh.]</p></section>
+        </main>
 		<Footer />
 	</body>
 </html>

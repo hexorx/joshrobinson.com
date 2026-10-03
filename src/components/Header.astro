@@ -1,66 +1,189 @@
 ---
-import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import CommandPalette from "./CommandPalette.astro";
+import { resume } from "../lib/resume";
+const path = Astro.url.pathname;
+const nav = [
+  { number: "01", label: "work", href: "/#work", active: path === "/" },
+  {
+    number: "02",
+    label: "writing",
+    href: "/blog/",
+    active: path.startsWith("/blog") || path.startsWith("/tags"),
+  },
+  {
+    number: "03",
+    label: "resume",
+    href: "/resume/",
+    active: path.startsWith("/resume"),
+  },
+];
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/resume">Resume</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
-			{
-				SOCIAL_LINKS.map((link) => (
-					<a href={link.href} target="_blank" rel="me noopener">
-						{link.label}
-					</a>
-				))
-			}
-		</div>
-	</nav>
+<a class="skip-link" href="#main-content">
+  Skip to content
+</a>
+<header class="site-header">
+  <nav class="container" aria-label="Primary">
+    <a class="logo" href="/" aria-label="Josh Robinson home">
+      <i aria-hidden="true">JR</i>josh<span>@</span>robinson<span>:~</span>
+    </a>
+    <ul>
+      {nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={item.active ? "page" : undefined}>
+            <span class="number" aria-hidden="true">
+              {item.number}
+            </span>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <button
+      class="command-trigger"
+      data-command-open
+      aria-haspopup="dialog"
+      aria-controls="command-palette"
+    >
+      <span class="search-label">Search or jump to…</span>
+      <span class="mobile-label">Search</span>
+      <kbd>⌘</kbd>
+      <kbd>K</kbd>
+    </button>
+    <a
+      class="button primary contact"
+      href={resume.email ? `mailto:${resume.email}` : "/about/#contact"}
+    >
+      Get in touch
+    </a>
+  </nav>
 </header>
+<CommandPalette />
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-	}
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(10, 12, 15, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    min-height: 60px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font: 600 15px var(--mono);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .logo i {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background: var(--acc);
+    color: var(--acc-ink);
+    border-radius: 6px;
+    font: 700 11px var(--mono);
+    font-style: normal;
+  }
+  .logo span {
+    color: var(--dim);
+  }
+  ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 12px;
+  }
+  ul a {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font: 500 13px var(--mono);
+    color: var(--mute);
+    text-decoration: none;
+  }
+  ul a[aria-current] {
+    background: var(--raised);
+    color: var(--ink);
+  }
+  .number {
+    color: var(--dim);
+    margin-right: 6px;
+  }
+  .command-trigger {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 13px var(--mono);
+    color: var(--mute);
+    white-space: nowrap;
+  }
+  .mobile-label {
+    display: none;
+  }
+  @media (max-width: 1050px) {
+    nav {
+      gap: 12px;
+    }
+    .search-label {
+      display: none;
+    }
+    .mobile-label {
+      display: inline;
+    }
+    ul {
+      margin: 0;
+    }
+  }
+  @media (max-width: 720px) {
+    nav {
+      flex-wrap: wrap;
+      padding-block: 10px;
+      gap: 8px;
+    }
+    .logo {
+      font-size: 13px;
+    }
+    .command-trigger {
+      padding: 6px 8px;
+    }
+    .command-trigger kbd {
+      display: none;
+    }
+    ul {
+      order: 3;
+      flex: 1;
+      justify-content: space-between;
+    }
+    ul a {
+      font-size: 11px;
+      padding-inline: 4px;
+    }
+    .number {
+      margin-right: 4px;
+    }
+    .contact {
+      order: 4;
+      font-size: 12px;
+      padding-inline: 10px;
+    }
+  }
+  @media print {
+    .site-header {
+      display: none;
+    }
+  }
 </style>

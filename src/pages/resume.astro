@@ -13,7 +13,7 @@ import { personJsonLd, resume } from '../lib/resume';
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content" tabindex="-1">
 			<article class="resume">
 				<header>
 					<h1>{resume.name}</h1>
@@ -100,7 +100,7 @@ import { personJsonLd, resume } from '../lib/resume';
 				}
 				.resume .meta,
 				.resume .dates {
-					color: rgb(var(--gray));
+					color: var(--mute);
 				}
 				.resume .entry h3 {
 					margin-bottom: 0;

@@ -25,7 +25,7 @@ const { posts } = Astro.props as { posts: Post[] };
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content" tabindex="-1">
 			<h1>Posts tagged #{tag}</h1>
 			<ul>
 				{

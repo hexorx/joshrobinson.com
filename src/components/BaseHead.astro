@@ -15,13 +15,22 @@ import "@fontsource/jetbrains-mono/latin-500.css";
 interface Props {
   title: string;
   description: string;
-  image?: ImageMetadata;
+  image?:
+    | ImageMetadata
+    | { src: string; width: number; height: number; alt?: string };
+  type?: "website" | "article";
   jsonLd?: Record<string, unknown>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage, jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  image = FallbackImage,
+  type = "website",
+  jsonLd,
+} = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -46,7 +55,7 @@ const { title, description, image = FallbackImage, jsonLd } = Astro.props;
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

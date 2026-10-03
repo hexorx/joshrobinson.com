@@ -28,7 +28,7 @@ test('404 contains HTML copy, mascot and home link', async () => {
   const html = await readFile('dist/404.html', 'utf8');
   for (const text of ['$ cd ./this-page', 'zsh: no such file or directory', "This page doesn't exist, or it moved.", 'Back home']) assert.ok(html.includes(text));
   assert.match(html, /href="\/"/);
-  assert.match(html, /hexorx-404-hex-460/);
+  assert.match(html, /hexorx-S08-404/);
   assert.match(html, /name="robots" content="noindex"/);
 });
 test('all shipped kit images remain below 300 KB', async () => {
@@ -40,4 +40,16 @@ test('all shipped kit images remain below 300 KB', async () => {
     }
   }
   await walk('dist');
+});
+
+test('reserved slot sources preserve the exact transparent swap dimensions', async () => {
+  for (const [slot, width, height] of [['S08-404', 1200, 1260], ['S09-og', 760, 972]]) {
+    const metadata = await sharp(`dist/hexorx/hexorx-${slot}.webp`).metadata();
+    assert.equal(metadata.width, width);
+    assert.equal(metadata.height, height);
+    assert.equal(metadata.hasAlpha, true);
+  }
+  const icon = await sharp('dist/icon-512.png').metadata();
+  assert.equal(icon.width, 512);
+  assert.equal(icon.height, 512);
 });

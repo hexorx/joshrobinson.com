@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test": "node --test tests/social-card.test.mjs",
+    "test": "npm run test:unit && npm run test:build && playwright test",
+    "format:check": "prettier --plugin prettier-plugin-astro --check \"src/**/*.{astro,css,ts}\" \"tests/**/*.ts\" \"*.{mjs,ts}\" \".github/workflows/*.yml\"",
+    "test:unit": "node --test tests/social-card.test.mjs",
     "test:build": "node --test tests/built-kit.test.mjs"
   },
   "dependencies": {
@@ -21,7 +23,7 @@
     "@fontsource/geist": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
     "astro": "^7.3.5",
-    "satori": "^0.35.0",
+    "satori": "0.32.0",
     "sharp": "^0.35.0"
   },
   "allowScripts": {
@@ -30,6 +32,10 @@
   "description": "Josh Robinson's personal site, blog, and online resume.",
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
     "typescript": "^6.0.3"
   },
   "overrides": {

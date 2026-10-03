@@ -1,43 +1,80 @@
 ---
-import { Image } from 'astro:assets';
-import BaseHead from '../components/BaseHead.astro';
-import mascot from '../assets/hexorx/hexorx-404-hex-460.webp';
-import '@fontsource/geist/latin-400.css';
-import '@fontsource/geist/latin-700.css';
-import '@fontsource/jetbrains-mono/latin-400.css';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Terminal from "../components/Terminal.astro";
+import Button from "../components/Button.astro";
+import Kicker from "../components/Kicker.astro";
+import MascotSlot from "../components/MascotSlot.astro";
 ---
+
 <html lang="en">
   <head>
-    <BaseHead title="404 — Josh Robinson" description="This page doesn't exist, or it moved." />
+    <BaseHead
+      title="404 — Josh Robinson"
+      description="This page doesn't exist, or it moved."
+    />
     <meta name="robots" content="noindex" />
   </head>
   <body>
-    <main>
-      <Image src={mascot} width={460} height={460} alt="hexorx, Josh Robinson's illustrated mascot, looking surprised" />
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <div class="mascot">
+        <MascotSlot
+          slotId="S08"
+          pose="surprised shrug"
+          src="/hexorx/hexorx-S08-404.webp"
+          assetWidth={1200}
+          assetHeight={1260}
+          desktopWidth={420}
+          desktopHeight={440}
+          mobileWidth={300}
+          mobileHeight={320}
+          bottomAligned
+          alt="Supplied surprised hexorx head; final S08 full-body art pending"
+        />
+      </div>
       <section aria-labelledby="error-title">
-        <p class="kicker">404 / path not found</p>
-        <div class="terminal">
-          <p class="command">$ cd ./this-page</p>
-          <p>zsh: no such file or directory</p>
-        </div>
+        <Kicker number="404">path not found</Kicker>
+        <Terminal title="zsh — ./this-page">
+          <span class="command">$ cd ./this-page</span>
+          {"\n"}zsh: no such file or directory
+        </Terminal>
         <h1 id="error-title">This page doesn't exist, or it moved.</h1>
-        <a href="/">Back home ↵</a>
+        <Button href="/" primary>
+          Back home ↵
+        </Button>
       </section>
     </main>
+    <Footer />
   </body>
 </html>
 <style>
-  body { background: var(--bg, #0A0C0F); color: var(--ink, #E8EDF2); font-family: Geist, sans-serif; }
-  main { width: min(1200px, calc(100% - 64px)); max-width: none; min-height: 100svh; padding: 48px 0; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  img { width: 100%; max-width: 460px; justify-self: center; }
-  .kicker, .terminal, a { font-family: 'JetBrains Mono', monospace; }
-  .kicker { font-size: 14px; color: var(--mute, #9AA6B2); }
-  .terminal { padding: 24px; border: 1px solid var(--line, #26303A); border-radius: 8px; background: var(--surface, #11151A); font-size: 16px; overflow-wrap: anywhere; }
-  .terminal p { margin: 0; }
-  .command { color: var(--acc, #C6F432); }
-  h1 { margin: 24px 0; color: inherit; font-size: clamp(28px, 4vw, 44px); line-height: 1.2; }
-  a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 20px; border-radius: 6px; background: var(--acc, #C6F432); color: #0A0C0F; font-size: 15px; text-decoration: none; }
-  a:hover { color: #0A0C0F; text-decoration: underline; }
-  a:focus-visible { outline: 2px solid var(--ink, #E8EDF2); outline-offset: 4px; }
-  @media (max-width: 700px) { main { width: calc(100% - 40px); grid-template-columns: 1fr; gap: 24px; padding: 32px 0; } img { max-width: 260px; } }
+  main {
+    min-height: 65svh;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 48px;
+    align-items: center;
+    padding-block: 48px;
+  }
+  .mascot {
+    justify-self: center;
+    max-width: 100%;
+  }
+  .command {
+    color: var(--acc);
+  }
+  h1 {
+    margin-block: 24px;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+  }
+  @media (max-width: 900px) {
+    main {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-block: 32px;
+    }
+  }
 </style>

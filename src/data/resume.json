@@ -1,51 +1,151 @@
 {
-  "_comment": "PLACEHOLDER resume data. Replace every value with Josh's real details. The /resume page and its Person JSON-LD are generated from this file.",
+  "_comment": "Verified facts from HEX-440. Unknown copy stays visibly marked [Placeholder]. This file is the only source of resume facts.",
   "name": "Josh Robinson",
-  "headline": "[Placeholder headline, e.g. role and focus]",
-  "location": "[Placeholder city, state]",
-  "email": "",
+  "headline": "I architect AI systems that ship to production.",
+  "location": "Newton, IA",
+  "email": "hexorx@pm.me",
   "url": "https://joshrobinson.com",
-  "summary": "[Placeholder: two or three sentences on what Josh does and the kind of work he wants.]",
+  "summary": "[Placeholder] Career summary",
   "profiles": [
     {
       "network": "GitHub",
       "url": "https://github.com/hexorx"
+    },
+    {
+      "network": "LinkedIn",
+      "url": "https://linkedin.com/in/hexorx"
     }
   ],
   "experience": [
     {
-      "company": "[Placeholder company]",
-      "role": "[Placeholder role]",
-      "start": "2020",
-      "end": "Present",
-      "location": "[Placeholder]",
+      "ref": "HEAD",
+      "company": "BLDX",
+      "role": "CTO & Co-Founder",
+      "start": "2021",
+      "end": "present",
+      "current": true,
       "highlights": [
-        "[Placeholder accomplishment with a measurable result]",
-        "[Placeholder accomplishment]"
+        "Construction AI",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "main",
+      "company": "Bproto Labs",
+      "role": "Founder",
+      "start": "2018",
+      "end": "present",
+      "current": true,
+      "highlights": [
+        "Consulting",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "v3",
+      "company": "YouBase",
+      "role": "CTO",
+      "start": "[Placeholder]",
+      "end": "[Placeholder]",
+      "current": false,
+      "highlights": [
+        "[Placeholder] Responsibilities",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "v2",
+      "company": "BitBoss",
+      "role": "Co-Founder",
+      "start": "[Placeholder]",
+      "end": "[Placeholder]",
+      "current": false,
+      "highlights": [
+        "Inventor on US Patent 10,373,426",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "v1",
+      "company": "American Red Cross",
+      "role": "[Placeholder] Role",
+      "start": "[Placeholder]",
+      "end": "[Placeholder]",
+      "current": false,
+      "highlights": [
+        "[Placeholder] Responsibilities",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "v0.2",
+      "company": "Aetna/iTriage",
+      "role": "[Placeholder] Role",
+      "start": "[Placeholder]",
+      "end": "[Placeholder]",
+      "current": false,
+      "highlights": [
+        "[Placeholder] Responsibilities",
+        "[Placeholder] Outcomes"
+      ]
+    },
+    {
+      "ref": "v0.1",
+      "company": "Bloomberg",
+      "role": "[Placeholder] Role",
+      "start": "[Placeholder]",
+      "end": "[Placeholder]",
+      "current": false,
+      "highlights": [
+        "[Placeholder] Responsibilities",
+        "[Placeholder] Outcomes"
       ]
     }
   ],
   "projects": [
     {
-      "name": "[Placeholder project]",
+      "name": "US Patent 10,373,426",
+      "url": "https://patents.google.com/patent/US10373426B2/en",
+      "description": "Inventor"
+    },
+    {
+      "name": "Introducing Meteor",
       "url": "",
-      "description": "[Placeholder one-line description]"
+      "description": "Co-author \u00b7 Apress, 2015"
+    },
+    {
+      "name": "countries",
+      "url": "https://rubygems.org/gems/countries",
+      "description": "Author of the Ruby gem"
+    },
+    {
+      "name": "currencies",
+      "url": "https://rubygems.org/gems/currencies",
+      "description": "Author of the Ruby gem"
     }
   ],
   "skills": [
     {
-      "group": "[Placeholder group]",
+      "group": "[Placeholder] Skills group",
       "items": [
-        "[Skill]",
-        "[Skill]"
+        "[Placeholder] Skill",
+        "[Placeholder] Skill"
       ]
     }
   ],
   "education": [
     {
-      "school": "[Placeholder school]",
-      "credential": "[Placeholder degree or certificate]",
-      "year": ""
+      "school": "Hamilton College",
+      "credential": "A.A.S.",
+      "year": "2003"
     }
+  ],
+  "targetRole": "[Placeholder] Target role",
+  "address": {
+    "locality": "Newton",
+    "region": "IA"
+  },
+  "community": [
+    "Ran the Denver MongoDB meetup"
   ]
 }

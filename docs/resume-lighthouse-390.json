@@ -1,0 +1,93 @@
+{
+  "score": 1,
+  "audits": {
+    "aria-allowed-attr": {
+      "score": 1,
+      "title": "`[aria-*]` attributes match their roles"
+    },
+    "aria-conditional-attr": {
+      "score": 1,
+      "title": "ARIA attributes are used as specified for the element's role"
+    },
+    "aria-hidden-body": {
+      "score": 1,
+      "title": "`[aria-hidden=\"true\"]` is not present on the document `<body>`"
+    },
+    "aria-hidden-focus": {
+      "score": 1,
+      "title": "`[aria-hidden=\"true\"]` elements do not contain focusable descendents"
+    },
+    "aria-prohibited-attr": {
+      "score": 1,
+      "title": "Elements use only permitted ARIA attributes"
+    },
+    "aria-valid-attr-value": {
+      "score": 1,
+      "title": "`[aria-*]` attributes have valid values"
+    },
+    "aria-valid-attr": {
+      "score": 1,
+      "title": "`[aria-*]` attributes are valid and not misspelled"
+    },
+    "button-name": {
+      "score": 1,
+      "title": "Buttons have an accessible name"
+    },
+    "color-contrast": {
+      "score": 1,
+      "title": "Background and foreground colors have a sufficient contrast ratio"
+    },
+    "document-title": {
+      "score": 1,
+      "title": "Document has a `<title>` element"
+    },
+    "heading-order": {
+      "score": 1,
+      "title": "Heading elements appear in a sequentially-descending order"
+    },
+    "html-has-lang": {
+      "score": 1,
+      "title": "`<html>` element has a `[lang]` attribute"
+    },
+    "html-lang-valid": {
+      "score": 1,
+      "title": "`<html>` element has a valid value for its `[lang]` attribute"
+    },
+    "image-alt": {
+      "score": 1,
+      "title": "Image elements have `[alt]` attributes"
+    },
+    "label-content-name-mismatch": {
+      "score": 0,
+      "title": "Elements with visible text labels do not have matching accessible names."
+    },
+    "landmark-one-main": {
+      "score": 1,
+      "title": "Document has a main landmark."
+    },
+    "link-name": {
+      "score": 1,
+      "title": "Links have a discernible name"
+    },
+    "list": {
+      "score": 1,
+      "title": "Lists contain only `<li>` elements and script supporting elements (`<script>` and `<template>`)."
+    },
+    "listitem": {
+      "score": 1,
+      "title": "List items (`<li>`) are contained within `<ul>`, `<ol>` or `<menu>` parent elements"
+    },
+    "meta-viewport": {
+      "score": 1,
+      "title": "`[user-scalable=\"no\"]` is not used in the `<meta name=\"viewport\">` element and the `[maximum-scale]` attribute is not less than 5."
+    },
+    "skip-link": {
+      "score": 1,
+      "title": "Skip links are focusable."
+    },
+    "target-size": {
+      "score": 1,
+      "title": "Touch targets have sufficient size and spacing."
+    }
+  }
+}

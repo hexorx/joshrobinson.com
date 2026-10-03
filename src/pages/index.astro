@@ -1,61 +1,579 @@
 ---
-import Kicker from "../components/Kicker.astro";
-import Panel from "../components/Panel.astro";
 import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import Footer from "../components/Footer.astro";
+import Kicker from "../components/Kicker.astro";
+import StatusPill from "../components/StatusPill.astro";
+import Button from "../components/Button.astro";
+import Terminal from "../components/Terminal.astro";
+import Panel from "../components/Panel.astro";
+import MascotSlot from "../components/MascotSlot.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { getPublishedPosts } from "../lib/posts";
-const recent = (await getPublishedPosts()).slice(0, 5);
+import { resume } from "../lib/resume";
+const recent = (await getPublishedPosts()).slice(0, 4);
+const career = resume.experience.slice(0, 5);
+const work = [
+  {
+    name: "BLDX — AI for construction",
+    role: "CTO & Co-Founder",
+    description: "Construction AI · 2021–present",
+    art: "BLDX",
+    span: "wide",
+  },
+  {
+    name: "BitBoss",
+    role: "Co-Founder · inventor",
+    description: "US Patent 10,373,426",
+    art: "US 10,373,426",
+    span: "",
+  },
+  {
+    name: "countries (Ruby gem)",
+    role: "Author",
+    description: "Ruby countries gem",
+    art: "$ gem install countries",
+    span: "",
+  },
+  {
+    name: "Introducing Meteor",
+    role: "Co-author",
+    description: "Apress, 2015",
+    art: "Introducing Meteor",
+    span: "",
+  },
+  {
+    name: "Bproto Labs",
+    role: "Founder",
+    description: "Consulting · 2018–present",
+    art: "Bproto Labs",
+    span: "",
+  },
+  {
+    name: "YouBase",
+    role: "CTO",
+    description: "[Placeholder: dates and project description]",
+    art: "YouBase",
+    span: "wide",
+  },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Josh Robinson — AI Architect"
+      description="I architect AI systems that ship to production."
+    />
   </head>
   <body>
     <Header />
     <main id="main-content" tabindex="-1">
-      <section class="intro hairline-grid">
-        <Kicker number="00">hello / world</Kicker>
-        <h1>Hi, I'm Josh Robinson.</h1>
-        <!-- PLACEHOLDER: replace with Josh's real intro. -->
-        <p class="placeholder lede">
-          [Placeholder intro: who Josh is, what he works on, and what he's
-          looking for.]
-        </p>
-        <p>
-          <a href="/resume">Read my resume</a> ·{" "}
-          <a href="/about">More about me</a>
-        </p>
-      </section>
-      <section id="work">
-        <Kicker number="01">selected work</Kicker>
-        <Panel>
-          <h2 slot="heading">Selected work</h2>
-          <p class="placeholder">
-            [Placeholder: selected projects will be added here.]
+      <section class="hero hairline-grid" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <StatusPill>open to AI Architect / AI Lead roles</StatusPill>
+          <h1 id="hero-title">
+            I architect <em>AI systems</em> that ship to production.
+          </h1>
+          <p class="lede">
+            CTO &amp; Co-Founder of BLDX, building AI for construction. Founder
+            of Bproto Labs, author of the Ruby countries and currencies gems,
+            and co-author of Introducing Meteor.
           </p>
+          <div class="actions">
+            <Button href="/resume/" primary>
+              View resume ↵
+            </Button>
+            <Button href="#work">Selected work</Button>
+          </div>
+          <p class="hero-meta mono">
+            Newton, IA · <a href="mailto:hexorx@pm.me">hexorx@pm.me</a>
+          </p>
+        </div>
+        <div class="hero-visual">
+          <MascotSlot
+            slotId="S02"
+            pose="waving"
+            src="/hexorx/home-S02.webp"
+            assetWidth={960}
+            assetHeight={1600}
+            desktopWidth={200}
+            desktopHeight={380}
+            mobileWidth={240}
+            mobileHeight={300}
+            bottomAligned
+            alt="hexorx, Josh Robinson's illustrated mascot; existing kit art while the S02 waving pose is pending"
+          />
+          <Terminal title="zsh — ~/josh">
+            {
+              "$ whoami\n\nJosh Robinson\nNewton, IA\n\nCTO & Co-Founder · BLDX\nFounder · Bproto Labs\nAuthor · countries / currencies\nCo-author · Introducing Meteor\n\n$ _"
+            }
+          </Terminal>
+        </div>
+      </section>
+      <section class="credentials" aria-labelledby="credentials-title">
+        <MascotSlot
+          slotId="S03"
+          pose="arms crossed"
+          src="/hexorx/home-S03.webp"
+          assetWidth={1000}
+          assetHeight={1000}
+          desktopWidth={300}
+          desktopHeight={300}
+          mobileWidth={240}
+          mobileHeight={240}
+          bottomAligned
+          alt="hexorx kit portrait; final S03 arms-crossed art pending"
+        />
+        <div>
+          <Kicker number="▪">about</Kicker>
+          <h2 id="credentials-title">Architect, CTO, builder</h2>
+          <p class="placeholder">
+            [Placeholder: short about paragraph from Josh]
+          </p>
+          <dl class="facts">
+            <div>
+              <dt>▪ now</dt>
+              <dd>
+                CTO, BLDX<small>co-founder · construction AI</small>
+              </dd>
+            </div>
+            <div>
+              <dt>▪ patent</dt>
+              <dd>
+                US 10,373,426<small>inventor · BitBoss</small>
+              </dd>
+            </div>
+            <div>
+              <dt>▪ book</dt>
+              <dd>
+                Introducing Meteor<small>co-author · Apress, 2015</small>
+              </dd>
+            </div>
+            <div>
+              <dt>▪ open source</dt>
+              <dd>
+                countries<small>Ruby gem · author</small>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+      <section id="work" aria-labelledby="work-title">
+        <Kicker number="01">selected work</Kicker>
+        <h2 id="work-title">Things I've built</h2>
+        <div class="work-grid">
+          {work.map((project) => (
+            <article class:list={["project", project.span]}>
+              <div class="blueprint" aria-hidden="true">
+                <span class="mono">{project.art}</span>
+                <span class="art-placeholder mono">
+                  [Placeholder: project visual]
+                </span>
+              </div>
+              <div class="project-info">
+                <p class="mono muted">{project.role}</p>
+                <h3>{project.name}</h3>
+                <p
+                  class:list={{
+                    placeholder: project.description.startsWith("[Placeholder"),
+                  }}
+                >
+                  {project.description}
+                </p>
+                <p class="placeholder">
+                  [Placeholder: case study and outcomes from Josh]
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section class="previews" aria-label="Career and latest writing">
+        <Panel>
+          <div slot="heading" class="panel-title">
+            <h2 class="kicker">
+              <b>02</b> / git log --career
+            </h2>
+            <a href="/resume/">Full resume →</a>
+          </div>
+          <ol class="career">
+            {career.map((job, index) => (
+              <li>
+                <span class="ref">
+                  {index === 0
+                    ? "HEAD"
+                    : index === 1
+                      ? "main"
+                      : `v${career.length - index}`}
+                </span>
+                <div>
+                  <strong>
+                    {job.role} · {job.company}
+                  </strong>
+                  <small
+                    class:list={{
+                      placeholder: job.company.includes("[Placeholder"),
+                    }}
+                  >
+                    {job.company.includes("[Placeholder")
+                      ? "[Placeholder: dates]"
+                      : `${job.start || "[Placeholder]"}–${job.end || "[Placeholder]"}`}
+                  </small>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Panel>
+        <Panel>
+          <div slot="heading" class="panel-title">
+            <h2 class="kicker">
+              <b>03</b> / latest writing
+            </h2>
+            <a href="/blog/">All posts →</a>
+          </div>
+          <ul class="posts">
+            {recent.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}/`}>
+                  <FormattedDate date={post.data.pubDate} />
+                  <strong>{post.data.title}</strong>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {recent.length === 0 && (
+            <p class="placeholder">[Placeholder: writing coming soon]</p>
+          )}
+          <a class="mono muted" href="/rss.xml">
+            RSS ↗
+          </a>
         </Panel>
       </section>
-      <section>
-        <Kicker number="02">writing</Kicker>
-        <h2>Recent writing</h2>
-        <ul>
-          {recent.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>{post.data.title}</a>{" "}
-              <FormattedDate date={post.data.pubDate} />
-            </li>
-          ))}
-        </ul>
-        <p>
-          <a href="/blog">All posts</a> · <a href="/rss.xml">RSS</a>
-        </p>
+      <section class="newsletter" aria-labelledby="newsletter-title">
+        <div class="newsletter-mascot">
+          <MascotSlot
+            slotId="S04"
+            pose="peeking"
+            src="/hexorx/home-S04.webp"
+            assetWidth={680}
+            assetHeight={340}
+            desktopWidth={170}
+            desktopHeight={86}
+            mobileWidth={140}
+            mobileHeight={72}
+            bottomAligned
+            alt="hexorx kit head crop; final S04 peeking art pending"
+          />
+        </div>
+        <div>
+          <Kicker number="▪">subscribe</Kicker>
+          <h2 id="newsletter-title">Notes on building with AI</h2>
+          <p class="placeholder">[Placeholder: cadence and topics from Josh]</p>
+        </div>
+        <div class="newsletter-controls">
+          <label for="newsletter-email">Email address</label>
+          <div class="email-field">
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder="you@company.com"
+              aria-describedby="newsletter-note"
+            />
+            <button type="button" disabled>
+              Subscribe ↵
+            </button>
+          </div>
+          <p id="newsletter-note" class="muted">
+            [Placeholder: newsletter provider pending] ·{" "}
+            <a href="/rss.xml">Subscribe via RSS</a>
+          </p>
+        </div>
       </section>
     </main>
     <Footer />
   </body>
 </html>
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 36px;
+    align-items: center;
+  }
+  h1 {
+    margin-top: 20px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--acc);
+  }
+  .hero-meta {
+    margin-top: 24px;
+    color: var(--mute);
+    font-size: 12px;
+  }
+  .hero-visual {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    min-width: 0;
+  }
+  .hero-visual :global(.terminal) {
+    flex: 1;
+    min-width: 0;
+  }
+  .hero-visual :global(pre) {
+    font-size: 12px;
+    padding: 16px;
+  }
+  .credentials {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 24px 0 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .facts > div {
+    padding: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .facts > div:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+  .facts > div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  dt {
+    font: 12px var(--mono);
+    color: var(--mute);
+    margin-bottom: 20px;
+  }
+  dd {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  small {
+    display: block;
+    color: var(--mute);
+    font: 12px/1.6 var(--mono);
+    margin-top: 6px;
+  }
+  #work {
+    scroll-margin-top: 120px;
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .project {
+    grid-column: span 2;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .project.wide {
+    grid-column: span 4;
+  }
+  .blueprint {
+    height: 220px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    background:
+      radial-gradient(ellipse at top right, var(--acc-wash), transparent 70%),
+      radial-gradient(var(--line-2) 1px, transparent 1px);
+    background-size:
+      auto,
+      16px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .blueprint > span {
+    border: 1px dashed var(--line-2);
+    padding: 10px;
+    font-size: 12px;
+  }
+  .art-placeholder {
+    color: var(--mute);
+  }
+  .project-info {
+    padding: 20px;
+  }
+  .project-info .mono {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .project-info p:last-child {
+    margin-bottom: 0;
+  }
+  .previews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .panel-title h2 {
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: normal;
+  }
+  .panel-title a {
+    font-size: 12px;
+  }
+  .career,
+  .posts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  .career li {
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+  }
+  .ref {
+    color: var(--amber);
+    font: 12px var(--mono);
+    min-width: 38px;
+  }
+  .career strong,
+  .posts strong {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .posts li {
+    border-bottom: 1px solid var(--line);
+  }
+  .posts a {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    text-decoration: none;
+  }
+  .posts :global(time) {
+    font: 11px var(--mono);
+    color: var(--mute);
+  }
+  .newsletter {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+  }
+  .newsletter-mascot {
+    position: absolute;
+    bottom: 100%;
+    right: 32px;
+  }
+  .newsletter-controls {
+    align-self: center;
+  }
+  label {
+    font: 12px var(--mono);
+    color: var(--mute);
+  }
+  .email-field {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  input {
+    min-width: 0;
+    width: 100%;
+  }
+  button {
+    flex-shrink: 0;
+    background: var(--acc);
+    color: var(--acc-ink);
+  }
+  #newsletter-note {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  @media (max-width: 1000px) and (min-width: 721px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-visual {
+      justify-content: center;
+    }
+    .hero-visual :global(.terminal) {
+      max-width: 450px;
+    }
+  }
+  @media (max-width: 720px) {
+    .hero,
+    .credentials,
+    .previews,
+    .newsletter {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+      gap: 32px;
+    }
+    .hero-visual {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .hero-visual :global(.terminal) {
+      width: 100%;
+    }
+    .credentials {
+      gap: 24px;
+    }
+    .credentials > :global(.mascot-slot) {
+      justify-self: center;
+    }
+    .facts > div {
+      padding: 16px;
+    }
+    dd {
+      font-size: 17px;
+    }
+    .project,
+    .project.wide {
+      grid-column: 1/-1;
+    }
+    .newsletter {
+      margin-top: 120px;
+      padding: 24px 20px;
+      gap: 20px;
+    }
+    .newsletter-mascot {
+      right: 20px;
+    }
+    .email-field {
+      flex-wrap: wrap;
+    }
+    .email-field button {
+      width: 100%;
+    }
+  }
+</style>

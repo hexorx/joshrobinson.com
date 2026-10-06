@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
 import { getPublishedPosts } from "../../lib/posts";
+import { postImagePath } from "../../lib/social-card.mjs";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
@@ -16,6 +17,9 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost
+  {...post.data}
+  socialImage={{ src: postImagePath(post.id), width: 1200, height: 630 }}
+>
   <Content />
 </BlogPost>

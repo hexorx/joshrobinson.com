@@ -23,6 +23,12 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# Wrangler local state and credentials
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env.*
+
 # browser verification output
 playwright-report/
 test-results/

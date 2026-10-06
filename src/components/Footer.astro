@@ -1,39 +1,72 @@
 ---
-import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
-const today = new Date();
+import { resume } from "../lib/resume";
+const linkedIn = resume.profiles.find(
+  (profile) => profile.network.toLowerCase() === "linkedin",
+);
 ---
 
-<footer>
-	&copy; {today.getFullYear()} {SITE_TITLE}. All rights reserved.
-	<div class="social-links">
-		{
-			SOCIAL_LINKS.map((link) => (
-				<a href={link.href} target="_blank" rel="me noopener">
-					{link.label}
-				</a>
-			))
-		}
-		<a href="/rss.xml">RSS</a>
-	</div>
+<footer class="container site-footer">
+  <span>
+    © {new Date().getFullYear()} Josh Robinson{" "}
+    <span class="credit">· built with Astro, served by Cloudflare</span>
+  </span>
+  <nav aria-label="Social links">
+    <a href="https://github.com/hexorx" rel="me">
+      GitHub
+    </a>
+    {linkedIn ? (
+      <a href={linkedIn.url} rel="me">
+        LinkedIn
+      </a>
+    ) : (
+      <a class="placeholder" href="/about/#contact">
+        LinkedIn [Placeholder]
+      </a>
+    )}
+    <a href="/rss.xml">RSS</a>
+    {resume.email ? (
+      <a href={`mailto:${resume.email}`}>Email</a>
+    ) : (
+      <a href="/about/#contact">Email [Placeholder]</a>
+    )}
+  </nav>
 </footer>
 <style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    font: 13px/1.6 var(--mono);
+    color: var(--mute);
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    text-decoration: none;
+  }
+  .credit {
+    display: inline;
+  }
+  @media (max-width: 720px) {
+    .site-footer {
+      flex-direction: column;
+    }
+    nav {
+      gap: 16px;
+    }
+  }
+  @media print {
+    .site-footer {
+      display: none;
+    }
+  }
 </style>

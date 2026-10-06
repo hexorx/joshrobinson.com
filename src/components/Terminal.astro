@@ -1,0 +1,13 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = "zsh — ~/josh" } = Astro.props;
+---
+
+<div class="terminal">
+  <div class="terminal-bar">
+    <span aria-hidden="true">● ● ●</span> {title}
+  </div>
+  <pre><slot /></pre>
+</div>

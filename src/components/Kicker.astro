@@ -1,0 +1,10 @@
+---
+interface Props {
+  number: string;
+}
+const { number } = Astro.props;
+---
+
+<p class="kicker">
+  <b>{number}</b> / <slot />
+</p>

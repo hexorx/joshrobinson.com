@@ -1,15 +1,23 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
+
 <html lang="en">
-  <head><BaseHead title="Page not found" description="The requested page could not be found." /></head>
+  <head>
+    <BaseHead
+      title="Page not found"
+      description="The requested page could not be found."
+    />
+  </head>
   <body>
     <Header />
-    <main>
+    <main id="main-content">
       <h1>Page not found</h1>
-      <p>The page may have moved. <a href="/">Return home</a>.</p>
+      <p>
+        The page may have moved. <a href="/">Return home</a>.
+      </p>
     </main>
     <Footer />
   </body>

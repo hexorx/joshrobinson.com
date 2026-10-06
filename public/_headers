@@ -1,0 +1,7 @@
+# Astro emits content-hashed bundles, images and fonts under /_astro/.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Preview URLs are public after approval. Keep them out of search indexes.
+https://:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex, nofollow

@@ -1,16 +1,23 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
 import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import TagList from "../components/TagList.astro";
-
+import MascotSlot from "../components/MascotSlot.astro";
+import WritingNewsletter from "../components/WritingNewsletter.astro";
+import { isoDate } from "../lib/writing";
+import type { Post } from "../lib/posts";
+import "../styles/post.css";
 type Props = CollectionEntry<"blog">["data"] & {
+  headings?: MarkdownHeading[];
+  minutes?: number;
+  previous?: Post;
+  next?: Post;
   socialImage?: { src: string; width: number; height: number };
 };
-
 const {
   title,
   description,
@@ -19,10 +26,20 @@ const {
   heroImage,
   tags = [],
   draft,
-  socialImage,
+  headings = [],
+  minutes = 1,
+  previous,
+  next,
+  socialImage = {
+    src: "/hexorx/og/og-post-template-1200x630.png",
+    width: 1200,
+    height: 630,
+  },
 } = Astro.props;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead
@@ -31,74 +48,209 @@ const {
       image={socialImage}
       type="article"
     />
-    <style>
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 680px;
-        max-width: 100%;
-        margin: auto;
-        padding: 24px 0;
-        font-size: 18px;
-        line-height: 1.75;
-        color: var(--ink);
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: var(--mute);
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
   </head>
-
   <body>
     <Header />
     <main id="main-content" tabindex="-1">
       <article>
-        <div class="hero-image">
-          {heroImage && (
-            <Image width={1020} height={510} src={heroImage} alt="" />
-          )}
-        </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
+        <header class="post-header">
+          <p class="kicker">
+            <a href="/blog/">writing</a> /{" "}
+            {tags[0] ? <a href={`/tags/${tags[0]}/`}>{tags[0]}</a> : "post"}
+          </p>
+          <h1>
+            {draft && "[Draft] "}
+            {title}
+          </h1>
+          <table class="post-meta">
+            <caption class="sr-only">Post details</caption>
+            <tbody>
+              <tr>
+                <th scope="row">Published</th>
+                <td>
+                  <time datetime={pubDate.toISOString()}>
+                    {isoDate(pubDate)}
+                  </time>
+                </td>
+              </tr>
               {updatedDate && (
-                <div class="last-updated-on">
-                  Last updated on <FormattedDate date={updatedDate} />
-                </div>
+                <tr>
+                  <th scope="row">Updated</th>
+                  <td>
+                    <time datetime={updatedDate.toISOString()}>
+                      {isoDate(updatedDate)}
+                    </time>
+                  </td>
+                </tr>
               )}
-            </div>
-            <h1>
-              {draft && "[Draft] "}
-              {title}
-            </h1>
-            <TagList tags={tags} />
-            <hr />
+              <tr>
+                <th scope="row">Tags</th>
+                <td>{tags.length ? <TagList tags={tags} /> : "—"}</td>
+              </tr>
+              <tr>
+                <th scope="row">Reading time</th>
+                <td>{minutes} min</td>
+              </tr>
+              <tr>
+                <th scope="row">Share</th>
+                <td>
+                  <button data-copy-link>Copy post link</button>{" "}
+                  <span data-share-status role="status"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </header>
+        {heroImage && (
+          <div class="post-cover hairline-grid">
+            <Image src={heroImage} width={1020} height={510} alt="" />
           </div>
-          <slot />
+        )}
+        <div class="post-columns">
+          <aside class="post-toc">
+            <nav aria-label="On this page">
+              <p class="kicker">On this page</p>
+              <ol>
+                {toc.map((h) => (
+                  <li class:list={[{ nested: h.depth === 3 }]}>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+              {!toc.length && <p class="muted">No sections in this post.</p>}
+            </nav>
+          </aside>
+          <div class="post-body">
+            <div class="prose">
+              <slot />
+            </div>
+            <div class="post-byline">
+              <MascotSlot
+                slotId="S06"
+                pose="warm smile"
+                src="/hexorx/avatars/hexorx-avatar-smile-512.webp"
+                assetWidth={512}
+                assetHeight={512}
+                desktopWidth={140}
+                desktopHeight={140}
+                hex
+              />
+              <div>
+                <p class="kicker">Written by</p>
+                <p>Josh Robinson</p>
+                <a href="/resume/">About Josh ↗</a>
+              </div>
+            </div>
+            <nav class="post-neighbors" aria-label="Adjacent posts">
+              {previous && (
+                <a href={`/blog/${previous.id}/`}>
+                  <span class="kicker">← Previous</span>
+                  <br />
+                  {previous.data.title}
+                </a>
+              )}
+              {next && (
+                <a href={`/blog/${next.id}/`}>
+                  <span class="kicker">Next →</span>
+                  <br />
+                  {next.data.title}
+                </a>
+              )}
+            </nav>
+            <WritingNewsletter />
+          </div>
         </div>
       </article>
     </main>
     <Footer />
   </body>
 </html>
+<script>
+  async function copy(text: string, status: HTMLElement) {
+    try {
+      await navigator.clipboard.writeText(text);
+      status.textContent = "Copied.";
+    } catch {
+      status.textContent =
+        "Copy unavailable. Select and copy the text manually.";
+    }
+  }
+  const share = document.querySelector<HTMLButtonElement>("[data-copy-link]");
+  const shareStatus = document.querySelector<HTMLElement>(
+    "[data-share-status]",
+  );
+  share?.addEventListener("click", () => {
+    if (shareStatus) void copy(location.href, shareStatus);
+  });
+  document
+    .querySelectorAll<HTMLPreElement>(".prose pre")
+    .forEach((pre, index) => {
+      const code = pre.querySelector("code");
+      if (!code) return;
+      const frame = document.createElement("div");
+      frame.className = "code-frame";
+      const bar = document.createElement("div");
+      bar.className = "code-bar";
+      const label = document.createElement("span");
+      label.textContent =
+        pre.dataset.filename || pre.dataset.language || "Code";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "Copy";
+      button.setAttribute("aria-label", `Copy code block ${index + 1}`);
+      const status = document.createElement("span");
+      status.className = "sr-only";
+      status.setAttribute("role", "status");
+      button.addEventListener(
+        "click",
+        () => void copy(code.textContent || "", status),
+      );
+      pre.before(frame);
+      frame.append(bar, pre, status);
+      const language = document.createElement("span");
+      language.textContent = pre.dataset.filename
+        ? pre.dataset.language || "text"
+        : "";
+      bar.append(label, language, button);
+      pre.tabIndex = 0;
+      pre.setAttribute("aria-label", `Code block ${index + 1}`);
+    });
+  const links = [
+    ...document.querySelectorAll<HTMLAnchorElement>(".post-toc a"),
+  ];
+  const activate = (id: string) =>
+    links.forEach((link) => {
+      if (link.hash.slice(1) === id)
+        link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  links.forEach((link) =>
+    link.addEventListener("click", () => {
+      const target = document.getElementById(
+        decodeURIComponent(link.hash.slice(1)),
+      );
+      if (target) {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+        activate(target.id);
+      }
+    }),
+  );
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) activate(visible[0].target.id);
+      },
+      { rootMargin: "-120px 0px -55% 0px" },
+    );
+    links.forEach((link) => {
+      const heading = document.getElementById(
+        decodeURIComponent(link.hash.slice(1)),
+      );
+      if (heading) observer.observe(heading);
+    });
+  }
+</script>

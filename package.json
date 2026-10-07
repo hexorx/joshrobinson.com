@@ -16,7 +16,7 @@
     "deploy:dry-run": "wrangler deploy --dry-run",
     "format:check": "prettier --plugin prettier-plugin-astro --check \"src/**/*.{astro,css,ts}\" \"tests/**/*.ts\" \"*.{mjs,ts}\" \".github/workflows/*.yml\"",
     "test:hosting": "node --test tests/check-links.test.mjs tests/preview-gate.test.mjs",
-    "test:unit": "node --test tests/social-card.test.mjs",
+    "test:unit": "node --test tests/social-card.test.mjs tests/writing-unit.mjs",
     "test:build": "node --test tests/built-kit.test.mjs"
   },
   "dependencies": {

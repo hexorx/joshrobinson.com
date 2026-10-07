@@ -3,7 +3,8 @@ import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-import FormattedDate from "../../components/FormattedDate.astro";
+import WritingRows from "../../components/WritingRows.astro";
+import WritingNewsletter from "../../components/WritingNewsletter.astro";
 import { getPublishedPosts, getTags, type Post } from "../../lib/posts";
 
 export async function getStaticPaths() {
@@ -29,18 +30,20 @@ const { posts } = Astro.props as { posts: Post[] };
   <body>
     <Header />
     <main id="main-content" tabindex="-1">
-      <h1>Posts tagged #{tag}</h1>
-      <ul>
-        {posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.id}/`}>{post.data.title}</a>{" "}
-            <FormattedDate date={post.data.pubDate} />
-          </li>
-        ))}
-      </ul>
-      <p>
-        <a href="/tags/">All tags</a>
+      <p class="kicker">
+        <a href="/blog/">02 / writing</a> / tags
       </p>
+      <h1>#{tag}</h1>
+      <p>
+        <a class="button" href="/blog/">
+          All posts
+        </a>{" "}
+        <a class="button" href="/tags/">
+          All tags
+        </a>
+      </p>
+      <WritingRows posts={posts} />
+      <WritingNewsletter />
     </main>
     <Footer />
   </body>

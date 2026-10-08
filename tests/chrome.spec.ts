@@ -26,21 +26,11 @@ for (const width of [1440, 390]) {
       await expect
         .poll(() => page.evaluate(() => document.querySelectorAll("h1").length))
         .toBe(1);
-      const avatar = page.locator('[data-mascot-slot="S01"]');
+      const avatar = page.locator('[data-brand-mark="S01"]');
       await expect(avatar).toHaveCSS("width", "34px");
       await expect(avatar).toHaveCSS("height", "34px");
-      await expect(avatar.locator("img")).toHaveAttribute("width", "96");
-      await expect(avatar.locator("img")).toHaveAttribute("height", "96");
-      expect(
-        await avatar
-          .locator("img")
-          .evaluate(
-            (img: HTMLImageElement) =>
-              img.complete &&
-              img.naturalWidth === 96 &&
-              img.naturalHeight === 96,
-          ),
-      ).toBeTruthy();
+      await expect(avatar).toHaveText(">_");
+      await expect(page.locator('img[src*="/hexorx/"]')).toHaveCount(0);
       await expect(
         page.getByRole("navigation", { name: "Primary" }),
       ).toBeVisible();

@@ -6,7 +6,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import TagList from "../components/TagList.astro";
-import MascotSlot from "../components/MascotSlot.astro";
+import BrandMark from "../components/BrandMark.astro";
 import WritingNewsletter from "../components/WritingNewsletter.astro";
 import { showNewsletter } from "../consts";
 import { isoDate } from "../lib/writing";
@@ -32,7 +32,7 @@ const {
   previous,
   next,
   socialImage = {
-    src: "/hexorx/og/og-post-template-1200x630.png",
+    src: "/brand/og-home-1200x630.png",
     width: 1200,
     height: 630,
   },
@@ -126,16 +126,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
               <slot />
             </div>
             <div class="post-byline">
-              <MascotSlot
-                slotId="S06"
-                pose="warm smile"
-                src="/hexorx/avatars/hexorx-avatar-smile-512.webp"
-                assetWidth={512}
-                assetHeight={512}
-                desktopWidth={140}
-                desktopHeight={140}
-                hex
-              />
+              <BrandMark slotId="S06" desktopWidth={140} desktopHeight={140} />
               <div>
                 <p class="kicker">Written by</p>
                 <p>Josh Robinson</p>

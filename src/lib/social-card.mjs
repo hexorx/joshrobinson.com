@@ -9,7 +9,6 @@ export function postImagePath(id) {
 let resources;
 function loadResources() {
   return (resources ??= Promise.all([
-    readFile(resolve("public/hexorx/hexorx-S09-og.webp")),
     readFile(
       resolve(
         "node_modules/@fontsource/geist/files/geist-latin-700-normal.woff",
@@ -22,15 +21,14 @@ function loadResources() {
     ),
   ]));
 }
-// Build-time composition of supplied kit art, with S09 reserved for Josh's replacement.
+// Text-only social cards using the locally bundled brand fonts.
 export async function renderPostCard(title, home = false) {
-  const [mascot, geist, mono] = await loadResources();
+  const [geist, mono] = await loadResources();
   const fontData = (buffer) =>
     buffer.buffer.slice(
       buffer.byteOffset,
       buffer.byteOffset + buffer.byteLength,
     );
-  const mascotPng = await sharp(mascot).png().toBuffer();
   const text = (children, style) => ({
     type: "div",
     props: {
@@ -74,10 +72,21 @@ export async function renderPostCard(title, home = false) {
           }),
           text("Josh Robinson", {
             left: 72,
-            top: 448,
+            top: 432,
             fontSize: 30,
             fontWeight: 700,
           }),
+          ...(!home
+            ? [
+                text("Everyone says use AI. I'll show you how.", {
+                  left: 72,
+                  top: 485,
+                  fontFamily: "Mono",
+                  fontSize: 18,
+                  color: "#C6F432",
+                }),
+              ]
+            : []),
           text("joshrobinson.com", {
             left: 72,
             top: 520,
@@ -85,39 +94,13 @@ export async function renderPostCard(title, home = false) {
             fontSize: 18,
             color: "#9AA6B2",
           }),
-          {
-            type: "div",
-            props: {
-              style: {
-                display: "flex",
-                position: "absolute",
-                left: 748,
-                top: 72,
-                width: 380,
-                height: 486,
-                border: "1px dashed #C6F432",
-              },
-              children: [
-                {
-                  type: "img",
-                  props: {
-                    src: `data:image/png;base64,${mascotPng.toString("base64")}`,
-                    width: 380,
-                    height: 486,
-                    style: { objectFit: "contain" },
-                  },
-                },
-                text("S09 · HEXORX · POSE: THUMBS UP · TBD", {
-                  left: 0,
-                  top: 0,
-                  fontFamily: "Mono",
-                  fontSize: 12,
-                  backgroundColor: "#0A0C0F",
-                  color: "#C6F432",
-                }),
-              ],
-            },
-          },
+          text("JR", {
+            left: 780,
+            top: 190,
+            fontFamily: "Mono",
+            fontSize: 180,
+            color: "#C6F432",
+          }),
         ],
       },
     },

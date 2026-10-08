@@ -1,0 +1,46 @@
+---
+interface Props {
+  slotId: string;
+  desktopWidth: number;
+  desktopHeight: number;
+  mobileWidth?: number;
+  mobileHeight?: number;
+}
+const {
+  slotId,
+  desktopWidth,
+  desktopHeight,
+  mobileWidth = desktopWidth,
+  mobileHeight = desktopHeight,
+} = Astro.props;
+---
+
+<span
+  class="brand-mark"
+  data-brand-mark={slotId}
+  aria-hidden="true"
+  style={`--mark-w:${desktopWidth}px;--mark-h:${desktopHeight}px;--mark-mobile-w:${mobileWidth}px;--mark-mobile-h:${mobileHeight}px`}
+>
+  &gt;_
+</span>
+<style>
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--mark-w);
+    height: var(--mark-h);
+    max-width: 100%;
+    color: var(--acc);
+    font: 700 min(calc(var(--mark-w) * 0.45), 120px) / 1 var(--mono);
+    vertical-align: bottom;
+  }
+  @media (max-width: 720px) {
+    .brand-mark {
+      width: var(--mark-mobile-w);
+      height: var(--mark-mobile-h);
+      font-size: min(calc(var(--mark-mobile-w) * 0.45), 120px);
+    }
+  }
+</style>

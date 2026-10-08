@@ -6,7 +6,7 @@ import Kicker from "../components/Kicker.astro";
 import StatusPill from "../components/StatusPill.astro";
 import Button from "../components/Button.astro";
 import Terminal from "../components/Terminal.astro";
-import MascotSlot from "../components/MascotSlot.astro";
+import BrandMark from "../components/BrandMark.astro";
 import BookCta from "../components/BookCta.astro";
 import { CAL_EVENT_URL, showStatusPill, showTestimonials } from "../consts";
 
@@ -46,18 +46,12 @@ const terminalLabel =
           </p>
         </div>
         <div class="hero-visual">
-          <MascotSlot
+          <BrandMark
             slotId="S02"
-            pose="waving"
-            src="/hexorx/home-S02.webp"
-            assetWidth={960}
-            assetHeight={1600}
             desktopWidth={200}
             desktopHeight={380}
             mobileWidth={240}
             mobileHeight={300}
-            bottomAligned
-            alt="hexorx, Josh Robinson's illustrated mascot; existing kit art while the S02 waving pose is pending"
           />
           <Terminal title="zsh — ~/josh" label={terminalLabel}>
             {
@@ -407,18 +401,12 @@ const terminalLabel =
       </section>
 
       <section id="about" class="credentials" aria-labelledby="about-title">
-        <MascotSlot
+        <BrandMark
           slotId="S03"
-          pose="arms crossed"
-          src="/hexorx/home-S03.webp"
-          assetWidth={1000}
-          assetHeight={1000}
           desktopWidth={300}
           desktopHeight={300}
           mobileWidth={240}
           mobileHeight={240}
-          bottomAligned
-          alt="hexorx kit portrait; final S03 arms-crossed art pending"
         />
         <div>
           <Kicker number="06">about</Kicker>

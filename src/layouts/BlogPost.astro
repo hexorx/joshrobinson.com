@@ -8,6 +8,7 @@ import Footer from "../components/Footer.astro";
 import TagList from "../components/TagList.astro";
 import MascotSlot from "../components/MascotSlot.astro";
 import WritingNewsletter from "../components/WritingNewsletter.astro";
+import { showNewsletter } from "../consts";
 import { isoDate } from "../lib/writing";
 import type { Post } from "../lib/posts";
 import "../styles/post.css";
@@ -55,7 +56,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
       <article>
         <header class="post-header">
           <p class="kicker">
-            <a href="/blog/">writing</a> /{" "}
+            <a href="/writing/">writing</a> /{" "}
             {tags[0] ? <a href={`/tags/${tags[0]}/`}>{tags[0]}</a> : "post"}
           </p>
           <h1>
@@ -138,26 +139,26 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
               <div>
                 <p class="kicker">Written by</p>
                 <p>Josh Robinson</p>
-                <a href="/resume/">About Josh ↗</a>
+                <a href="/#about">About Josh ↗</a>
               </div>
             </div>
             <nav class="post-neighbors" aria-label="Adjacent posts">
               {previous && (
-                <a href={`/blog/${previous.id}/`}>
+                <a href={`/writing/${previous.id}/`}>
                   <span class="kicker">← Previous</span>
                   <br />
                   {previous.data.title}
                 </a>
               )}
               {next && (
-                <a href={`/blog/${next.id}/`}>
+                <a href={`/writing/${next.id}/`}>
                   <span class="kicker">Next →</span>
                   <br />
                   {next.data.title}
                 </a>
               )}
             </nav>
-            <WritingNewsletter />
+            {showNewsletter && <WritingNewsletter />}
           </div>
         </div>
       </article>

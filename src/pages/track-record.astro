@@ -1,0 +1,363 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MascotSlot from "../components/MascotSlot.astro";
+import BookCta from "../components/BookCta.astro";
+import { personJsonLd, resume } from "../lib/resume";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Track Record · Josh Robinson, AI Consultant"
+      description="20+ years building software and 2+ years running AI in production. BLDX, American Red Cross, Aetna, Bloomberg, a US patent, open source, and a book."
+      jsonLd={personJsonLd(resume)}
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <header class="credentials hairline-grid">
+        <MascotSlot
+          slotId="S07"
+          pose="walking forward, purposeful"
+          src="/hexorx/hexorx-S07-walk.webp"
+          assetWidth={600}
+          assetHeight={760}
+          desktopWidth={150}
+          desktopHeight={190}
+          mobileWidth={110}
+          mobileHeight={150}
+          bottomAligned
+          alt="hexorx S07: walking forward, purposeful; final art pending"
+        />
+        <div>
+          <p class="kicker">git log --career</p>
+          <h1>Track record</h1>
+          <p class="lede">
+            A résumé, written for the people who might hire me. Here's what I've
+            built, where I built it, and what each one means for your business.
+          </p>
+        </div>
+      </header>
+      <div class="summary-strip">
+        <div>
+          <strong>20+ years</strong> building software, mostly as a founder or
+          CTO.
+        </div>
+        <div>
+          <strong>2+ years</strong> running AI features in production with real
+          users.
+        </div>
+        <div>
+          <strong>Big and small:</strong> startups I co-founded, plus the
+          American Red Cross, Aetna, and Bloomberg.
+        </div>
+      </div>
+
+      <article class="role entry current">
+        <header>
+          <p class="mono">HEAD · BLDX · CTO and co-founder · 2021 to present</p>
+          <p class="status">● current</p>
+        </header>
+        <h2>What I do</h2>
+        <p>
+          BLDX is an AI early-warning and continuous underwriting platform for
+          buildings and construction projects. In plain terms, it reads the
+          records a project produces, such as inspections, maintenance tickets,
+          permits, contracts, and compliance documents, and flags risk before it
+          turns into an insurance claim. People can also ask questions about
+          those records in plain English.
+        </p>
+        <ul>
+          <li>
+            I set the technical direction from the company's founding and lead a
+            small engineering team.
+          </li>
+          <li>
+            Our AI features have been in production with real users for more
+            than two years.
+          </li>
+          <li>
+            I build with several AI providers (OpenAI, Anthropic, xAI, and
+            Mistral) using LangChain and the Vercel AI SDK, so we can use the
+            right model for each job.
+          </li>
+          <li>
+            I measure AI quality with benchmarks, user feedback, and LangSmith,
+            a tool for tracking and testing how AI performs.
+          </li>
+          <li>
+            I work directly with insurance, facility management, compliance, and
+            construction experts to turn how they work and what they know into
+            AI workflows.
+          </li>
+        </ul>
+        <h3>What it means for you</h3>
+        <p>
+          I've done the hard part already: taking AI past the demo and into
+          daily use by real people, then keeping it accurate. I know how to sit
+          with experts who aren't technical, learn their work, and build
+          something they trust.
+        </p>
+      </article>
+
+      <article class="role entry current">
+        <header>
+          <p class="mono">
+            consulting · Independent technology consulting · 2018 to present
+          </p>
+          <p class="status">● ongoing</p>
+        </header>
+        <h2>What I do</h2>
+        <p>
+          Alongside my startup work, I've advised organizations on their
+          technology, architecture, and engineering practice, and recommended
+          practical build plans that fit small teams.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          "Fits a small team" is the whole point. I'm used to recommending what
+          a business can actually run and maintain, not the biggest possible
+          system.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">
+            main · American Red Cross · UI Architect · 2015 to 2018
+          </p>
+          <p class="status">○ past</p>
+        </header>
+        <h2>What I did</h2>
+        <p>
+          I built the Red Cross's online donation forms. Every online donation
+          made on the site ran through code I wrote. I also built a living style
+          guide, a shared library of page components that product owners used to
+          test options and pick what went into each new donation campaign. I
+          worked closely with product managers and senior leadership to keep
+          improving the donation experience.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          I've built software that a large, mission-driven organization relied
+          on for something that really mattered. And I built it so non-technical
+          people could make their own choices without waiting on a developer.
+          That's the same goal I have for the AI tools I set up for you.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">v5 · YouBase · Co-founder and CTO · 2016 to 2023</p>
+          <p class="status">○ past</p>
+        </header>
+        <h2>What I did</h2>
+        <p>
+          I led engineering on secure data systems for life sciences and
+          healthcare, working with industry stakeholders so the systems met
+          their standards and data-handling requirements.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          When your business handles sensitive information, security and privacy
+          aren't add-ons. I've designed for them from the start.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">tag · BitBoss · Co-founder · 2015 to 2020</p>
+          <p class="status">◆ patented</p>
+        </header>
+        <h2>What I did</h2>
+        <p>
+          I led teams building systems for real-money gaming, including mobile
+          apps and the systems behind them. I'm the inventor on US Patent
+          10,373,426, "System and Method for Provably Fair Gaming," granted in
+          2019.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          I've built systems where accuracy and trust weren't optional, and
+          invented something new enough to patent.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">
+            v4 · Aetna / iTriage · Web and Server Platform Architect · 2013 to
+            2014
+          </p>
+          <p class="status">○ past</p>
+        </header>
+        <h2>What I did</h2>
+        <p>
+          Platform architecture for iTriage, a consumer health product inside a
+          major healthcare company.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          I know how to work inside a large, regulated organization, with its
+          processes, reviews, and stakeholders, and still ship.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">
+            v3 · Bloomberg · Ruby on Rails Developer · 2012 to 2013
+          </p>
+          <p class="status">○ past</p>
+        </header>
+        <h2>What I did</h2>
+        <p>
+          I worked on processing and indexing large data sets and improving
+          system performance.
+        </p>
+        <h3>What it means for you</h3>
+        <p>
+          A lot of AI work is really data work: getting information organized
+          and findable. I've done that with large data sets at Bloomberg.
+        </p>
+      </article>
+
+      <article class="role entry">
+        <header>
+          <p class="mono">v2 · ShortTermHousing · CTO · 2010 to 2012</p>
+          <p class="status">○ past</p>
+        </header>
+        <h2>What I did</h2>
+        <p>Built the product from scratch and automated how it was deployed.</p>
+        <h3>What it means for you</h3>
+        <p>
+          I can take an idea from a blank page to something running, without a
+          big team.
+        </p>
+      </article>
+
+      <section>
+        <h2>Earlier</h2>
+        <ul class="deliverables">
+          <li>Principal Engineer, Aha! Labs, 2014 to 2015</li>
+          <li>Senior Lead Developer, Teliax, 2006 to 2010</li>
+          <li>
+            Co-founder and advisor, CodeCraftsmen, 2017 to present (part-time):
+            technical strategy, team management, and mentoring developers
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <p class="kicker">ls ./shipped</p>
+        <h2>Things I've made and shared</h2>
+        <ul class="deliverables">
+          <li>
+            <span class="mono">◆ patent</span>
+            <strong>US Patent 10,373,426</strong>, System and Method for
+            Provably Fair Gaming. Inventor, granted 2019.
+            <a href="https://patents.google.com/patent/US10373426B2/en">
+              Google Patents
+            </a>
+          </li>
+          <li>
+            <span class="mono">● oss</span>
+            <strong>
+              The <code>countries</code> Ruby gem.
+            </strong>{" "}
+            I'm the original author. It's an open-source library for country,
+            currency, and phone data that other developers build on. It now
+            lives at
+            <a href="https://github.com/countries/countries">
+              github.com/countries/countries
+            </a>
+            .
+          </li>
+          <li>
+            <span class="mono">○ published</span>
+            <strong>
+              <em>Introducing Meteor</em>
+            </strong>{" "}
+            (Apress, 2015). Co-author, with Aaron Gray and David Titarenco. A
+            book for developers on the Meteor web framework.
+          </li>
+          <li>
+            <span class="mono">● community</span>
+            <strong>Denver MongoDB Meetup.</strong> I ran it, bringing local
+            developers together to learn from each other.
+          </li>
+        </ul>
+        <p>
+          <strong>Why this matters for you:</strong> Writing a book and running
+          a meetup are teaching jobs. Training your team is the same skill: take
+          something technical and make it make sense.
+        </p>
+      </section>
+
+      <section>
+        <p class="kicker">// stack</p>
+        <h2>Tools I work with</h2>
+        <div class="stack-groups">
+          <div>
+            <h3>AI models and tools</h3>
+            <ul class="chips">
+              <li>OpenAI</li>
+              <li>Anthropic</li>
+              <li>xAI</li>
+              <li>Mistral</li>
+              <li>LangChain</li>
+              <li>Vercel AI SDK</li>
+              <li>LangSmith</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Data</h3>
+            <ul class="chips">
+              <li>PostgreSQL</li>
+              <li>MongoDB</li>
+              <li>MySQL</li>
+              <li>data pipelines</li>
+              <li>APIs and system integration</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Infrastructure</h3>
+            <ul class="chips">
+              <li>AWS</li>
+              <li>Docker</li>
+              <li>Kubernetes</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Languages</h3>
+            <ul class="chips">
+              <li>Python</li>
+              <li>TypeScript</li>
+              <li>JavaScript</li>
+              <li>Ruby</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <BookCta heading="Want this experience working on your business?" />
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  .role h2 {
+    font-size: 16px;
+    letter-spacing: 0;
+    margin-top: 8px;
+  }
+  @media print {
+    :global(span.mascot-slot[data-mascot-slot="S07"]) {
+      display: none;
+    }
+  }
+</style>

@@ -1,13 +1,14 @@
 ---
 interface Props {
   title?: string;
+  label?: string;
 }
-const { title = "zsh — ~/josh" } = Astro.props;
+const { title = "zsh — ~/josh", label } = Astro.props;
 ---
 
-<div class="terminal">
+<div class="terminal" role={label ? "img" : undefined} aria-label={label}>
   <div class="terminal-bar">
     <span aria-hidden="true">● ● ●</span> {title}
   </div>
-  <pre><slot /></pre>
+  <pre aria-hidden={label ? "true" : undefined}><slot /></pre>
 </div>

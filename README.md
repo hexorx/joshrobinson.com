@@ -165,9 +165,10 @@ The previous 2022 Nuxt starter remains in git history.
 
 ### Writing templates
 
-Writing keeps the existing `/blog/` and `/blog/<id>/` URLs. Tags link to the
-static `/tags/<tag>/` pages. `src/lib/posts.ts` continues to exclude drafts from
-production routes, RSS, and tag pages; sitemap generation sees only built pages.
+Published posts live at `/writing/` and `/writing/<id>/`. `/blog` and `/blog/`
+redirect to `/writing/`. Tags link to the static `/tags/<tag>/` pages.
+`src/lib/posts.ts` continues to exclude drafts from production routes, RSS, and
+tag pages; sitemap generation sees only built pages.
 
 Code fences support a language and an optional quoted filename:
 
@@ -182,7 +183,8 @@ MDX posts can import `Callout` from `../../components/Callout.astro` and use
 Markdown footnotes use the standard `[^id]` syntax. The TOC uses rendered H2/H3
 headings; code and share copy controls report clipboard failures accessibly.
 
-The newsletter remains a labelled placeholder until Josh supplies signup details.
+The newsletter signup stays off the public pages (`showNewsletter` in
+`src/consts.ts`) until Josh supplies signup details.
 S05 is an existing kit half-body crop resized to 880×880 (220px desktop, 170px
 mobile); the reading pose is pending. S06 uses the supplied smile avatar at
 512×512, displayed at 140px with hex clipping. Both retain labelled TBD slots.

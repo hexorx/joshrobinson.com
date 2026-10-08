@@ -33,15 +33,16 @@ for path, page in pages.items():
             if unquote(url.fragment) not in target_page.ids: failures.append(f'{route}: missing anchor {link}')
 feed = ET.parse(root/'rss.xml').getroot()
 items = feed.findall('./channel/item')
-post_links = pages[root/'blog/index.html'].post_links
+post_links = pages[root/'writing/index.html'].post_links
 assert {item.findtext('link') for item in items} == {'https://joshrobinson.com' + link for link in post_links}
 assert not (root/'blog/draft-example/index.html').exists()
 assert 'draft-example' not in (root/'rss.xml').read_text()
 sitemap = ''.join(path.read_text() for path in root.glob('sitemap*.xml'))
 tag_routes = ['/' + str(path.parent.relative_to(root)) + '/' for path in pages if path.parent.parent == root/'tags']
-for route in [*post_links, *tag_routes, '/resume/']:
+for route in [*post_links, *tag_routes, '/track-record/']:
     assert 'https://joshrobinson.com' + route in sitemap
 assert 'draft-example' not in sitemap
+assert 'hello-world' not in sitemap
 print(f'Internal link checker: {count} URLs/anchors checked; {len(failures)} broken.')
-print(f'RSS/sitemap: {len(items)} published items; posts, tags, resume included; draft excluded.')
+print(f'RSS/sitemap: {len(items)} published items; posts, tags, track record included; drafts excluded.')
 if failures: raise SystemExit('\n'.join(failures))

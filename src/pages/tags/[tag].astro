@@ -5,6 +5,7 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import WritingRows from "../../components/WritingRows.astro";
 import WritingNewsletter from "../../components/WritingNewsletter.astro";
+import { showNewsletter } from "../../consts";
 import { getPublishedPosts, getTags, type Post } from "../../lib/posts";
 
 export async function getStaticPaths() {
@@ -31,11 +32,11 @@ const { posts } = Astro.props as { posts: Post[] };
     <Header />
     <main id="main-content" tabindex="-1">
       <p class="kicker">
-        <a href="/blog/">02 / writing</a> / tags
+        <a href="/writing/">04 / writing</a> / tags
       </p>
       <h1>#{tag}</h1>
       <p>
-        <a class="button" href="/blog/">
+        <a class="button" href="/writing/">
           All posts
         </a>{" "}
         <a class="button" href="/tags/">
@@ -43,7 +44,7 @@ const { posts } = Astro.props as { posts: Post[] };
         </a>
       </p>
       <WritingRows posts={posts} />
-      <WritingNewsletter />
+      {showNewsletter && <WritingNewsletter />}
     </main>
     <Footer />
   </body>

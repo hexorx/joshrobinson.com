@@ -3,23 +3,29 @@ import AxeBuilder from "@axe-core/playwright";
 
 const routes = [
   "/",
-  "/about/",
-  "/resume/",
-  "/blog/",
-  "/blog/hello-world/",
-  "/tags/",
-  "/tags/meta/",
+  "/services/",
+  "/track-record/",
+  "/ai-for-realtors/",
+  "/book/",
+  "/writing/",
 ];
 for (const width of [1440, 390]) {
   test(`global chrome and accessibility at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     const fonts: string[] = [];
     page.on("request", (request) => {
-      if (request.resourceType() === "font") fonts.push(request.url());
+      if (request.resourceType() !== "font") return;
+      // The Cal.com iframe on /book loads its own fonts. This check covers ours.
+      if (request.frame()?.parentFrame()) return;
+      fonts.push(request.url());
     });
     for (const route of routes) {
       await page.goto(route);
-      await expect(page.locator("h1")).toHaveCount(1);
+      // Count light-DOM headings only. The Cal.com embed adds its own h1
+      // inside a shadow root on /book.
+      await expect
+        .poll(() => page.evaluate(() => document.querySelectorAll("h1").length))
+        .toBe(1);
       const avatar = page.locator('[data-mascot-slot="S01"]');
       await expect(avatar).toHaveCSS("width", "34px");
       await expect(avatar).toHaveCSS("height", "34px");
@@ -46,13 +52,14 @@ for (const width of [1440, 390]) {
           () => document.documentElement.scrollWidth <= innerWidth,
         ),
       ).toBeTruthy();
-      expect(
-        (
-          await new AxeBuilder({ page })
-            .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-            .analyze()
-        ).violations,
-      ).toEqual([]);
+      const axe = new AxeBuilder({ page }).withTags([
+        "wcag2a",
+        "wcag2aa",
+        "wcag21aa",
+      ]);
+      // Cal.com's booker is a cross-origin iframe. Don't fail our pages on it.
+      if (route === "/book/") axe.exclude("#cal-inline").setLegacyMode(true);
+      expect((await axe.analyze()).violations).toEqual([]);
     }
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
@@ -87,13 +94,16 @@ test("keyboard palette filters, traps focus, navigates, and restores focus", asy
   await expect(search).toBeFocused();
   await page.evaluate(() => document.fonts.ready);
   await expect(
+    dialog.getByRole("heading", { name: "Get started", exact: true }),
+  ).toBeVisible();
+  await expect(
+    dialog.getByRole("heading", { name: "Services", exact: true }),
+  ).toBeVisible();
+  await expect(
     dialog.getByRole("heading", { name: "Pages", exact: true }),
   ).toBeVisible();
   await expect(
-    dialog.getByRole("heading", { name: "Posts", exact: true }),
-  ).toBeVisible();
-  await expect(
-    dialog.getByRole("heading", { name: "Actions", exact: true }),
+    dialog.getByRole("heading", { name: "Elsewhere", exact: true }),
   ).toBeVisible();
   expect(
     (
@@ -103,9 +113,13 @@ test("keyboard palette filters, traps focus, navigates, and restores focus", asy
     ).violations,
   ).toEqual([]);
   await search.fill("zzzzz");
-  await expect(dialog.getByText("No matching commands.")).toBeVisible();
+  await expect(
+    dialog.getByText(
+      'No matches. Try "services", "book a call", or "track record".',
+    ),
+  ).toBeVisible();
   await search.fill("");
-  const last = dialog.getByRole("link", { name: /Download CV/ });
+  const last = dialog.getByRole("link", { name: /RSS feed/ });
   await search.focus();
   await page.keyboard.press("ArrowUp");
   await expect(last).toBeFocused();
@@ -119,17 +133,21 @@ test("keyboard palette filters, traps focus, navigates, and restores focus", asy
   await expect(dialog).not.toBeVisible();
   await expect(trigger).toBeFocused();
   await trigger.click();
-  await search.fill("hello, world");
+  await search.fill("realtors");
   await page.keyboard.press("ArrowDown");
   await expect(
-    dialog.getByRole("link", { name: /Hello, world/ }),
+    dialog.getByRole("link", { name: /AI for Realtors/ }),
   ).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/blog\/hello-world/);
+  await expect(page).toHaveURL(/ai-for-realtors/);
   await page.keyboard.press("Meta+k");
   await expect(dialog).toBeVisible();
   await search.fill("draft");
-  await expect(dialog.getByText("No matching commands.")).toBeVisible();
+  await expect(
+    dialog.getByText(
+      'No matches. Try "services", "book a call", or "track record".',
+    ),
+  ).toBeVisible();
 });
 
 test("mobile button, placeholder actions, and reduced motion", async ({
@@ -161,10 +179,8 @@ test("mobile button, placeholder actions, and reduced motion", async ({
   });
   await dialog.getByRole("button", { name: /Copy email/ }).click();
   await expect(page.locator("#command-status")).toHaveText("Email copied.");
-  const downloadPromise = page.waitForEvent("download");
-  await dialog.getByRole("link", { name: /Download CV/ }).click();
-  expect((await downloadPromise).suggestedFilename()).toBe(
-    "cv-placeholder.pdf",
+  await expect(dialog.getByRole("link", { name: /Download CV/ })).toHaveCount(
+    0,
   );
 });
 

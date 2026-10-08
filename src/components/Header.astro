@@ -1,21 +1,35 @@
 ---
 import CommandPalette from "./CommandPalette.astro";
 import MascotSlot from "./MascotSlot.astro";
-import { resume } from "../lib/resume";
+import { CAL_EVENT_URL } from "../consts";
 const path = Astro.url.pathname;
 const nav = [
-  { number: "01", label: "work", href: "/#work", active: path === "/" },
+  {
+    number: "01",
+    label: "services",
+    href: "/services",
+    active: path.startsWith("/services"),
+  },
   {
     number: "02",
-    label: "writing",
-    href: "/blog/",
-    active: path.startsWith("/blog") || path.startsWith("/tags"),
+    label: "how it works",
+    href: "/#how-it-works",
+    active: false,
   },
   {
     number: "03",
-    label: "resume",
-    href: "/resume/",
-    active: path.startsWith("/resume"),
+    label: "track record",
+    href: "/track-record",
+    active: path.startsWith("/track-record"),
+  },
+  {
+    number: "04",
+    label: "writing",
+    href: "/writing",
+    active:
+      path.startsWith("/writing") ||
+      path.startsWith("/blog") ||
+      path.startsWith("/tags"),
   },
 ];
 ---
@@ -66,11 +80,8 @@ const nav = [
       <kbd>⌘</kbd>
       <kbd>K</kbd>
     </button>
-    <a
-      class="button primary contact"
-      href={resume.email ? `mailto:${resume.email}` : "/about/#contact"}
-    >
-      Get in touch
+    <a class="button primary contact" href={CAL_EVENT_URL}>
+      Book a call
     </a>
   </nav>
 </header>
@@ -173,7 +184,7 @@ const nav = [
     }
     ul {
       order: 3;
-      flex: 1;
+      flex: 1 1 100%;
       justify-content: space-between;
     }
     ul a {

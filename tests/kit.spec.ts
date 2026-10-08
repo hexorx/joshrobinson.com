@@ -41,7 +41,7 @@ for (const width of [1440, 390]) {
     });
     await page.locator("#main-content").focus();
     await page.keyboard.press("Tab");
-    await expect(page.getByRole("link", { name: "Back home ↵" })).toBeFocused();
+    await expect(page.getByRole("link", { name: "Go home" })).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL("/");
   });

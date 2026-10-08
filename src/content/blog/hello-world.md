@@ -1,6 +1,7 @@
 ---
 title: 'Hello, world'
-description: 'Placeholder first post. Replace or delete before launch.'
+description: 'Template post kept out of the public site until Josh reviews which notes to publish.'
+draft: true
 pubDate: '2026-09-29'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['meta']

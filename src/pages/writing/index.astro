@@ -1,0 +1,85 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import MascotSlot from "../../components/MascotSlot.astro";
+import WritingRows from "../../components/WritingRows.astro";
+import WritingNewsletter from "../../components/WritingNewsletter.astro";
+import { showNewsletter } from "../../consts";
+import { getPublishedPosts, getTags } from "../../lib/posts";
+const posts = await getPublishedPosts();
+const tags = await getTags();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Writing · Josh Robinson"
+      description="Plain-English notes on putting AI to work in a real business: what helps, what doesn't, and how to get started."
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <div class="writing-hero hairline-grid">
+        <div>
+          <p class="kicker">04 / writing</p>
+          <h1>Writing</h1>
+          <p class="lede">
+            Plain-English notes on putting AI to work in a real business: what
+            helps, what doesn't, and how to get started.
+          </p>
+        </div>
+        <MascotSlot
+          slotId="S05"
+          pose="reading"
+          src="/hexorx/hexorx-S05-existing.webp"
+          assetWidth={880}
+          assetHeight={880}
+          desktopWidth={220}
+          desktopHeight={220}
+          mobileWidth={170}
+          mobileHeight={170}
+          alt="Existing hexorx kit crop; S05 reading art pending"
+        />
+      </div>
+      {tags.length > 0 && (
+        <nav class="tag-filters" aria-label="Filter writing by tag">
+          <a aria-current="page" href="/writing/">
+            All posts
+          </a>
+          {tags.map(({ tag, count }) => (
+            <a href={`/tags/${tag}/`}>
+              #{tag} <span>({count})</span>
+            </a>
+          ))}
+        </nav>
+      )}
+      {posts.length > 0 && <WritingRows posts={posts} />}
+      {showNewsletter && <WritingNewsletter />}
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  .tag-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+  }
+  .tag-filters a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: var(--r-sm);
+    font: 12px var(--mono);
+    text-decoration: none;
+  }
+  .tag-filters [aria-current] {
+    border-color: var(--acc);
+  }
+</style>

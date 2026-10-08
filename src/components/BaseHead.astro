@@ -19,9 +19,9 @@ interface Props {
     | { src: string; width: number; height: number; alt?: string };
   type?: "website" | "article";
   jsonLd?: Record<string, unknown>;
+  /** Pass false to omit the canonical link. Used by the 404 page, which is not a real URL. */
+  canonical?: string | false;
 }
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const {
   title,
@@ -29,7 +29,12 @@ const {
   image = { src: "/hexorx/og/og-home-1200x630.png", width: 1200, height: 630 },
   type = "website",
   jsonLd,
+  canonical,
 } = Astro.props;
+const canonicalURL =
+  canonical === false
+    ? null
+    : new URL(canonical ?? Astro.url.pathname, Astro.site);
 const imageURL = new URL(image.src, Astro.site ?? Astro.url);
 ---
 
@@ -52,7 +57,7 @@ const imageURL = new URL(image.src, Astro.site ?? Astro.url);
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+{canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -60,7 +65,7 @@ const imageURL = new URL(image.src, Astro.site ?? Astro.url);
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
-<meta property="og:url" content={canonicalURL} />
+<meta property="og:url" content={canonicalURL ?? Astro.site} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />

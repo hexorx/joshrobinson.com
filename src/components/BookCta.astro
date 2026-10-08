@@ -1,0 +1,36 @@
+---
+import Button from "./Button.astro";
+import Kicker from "./Kicker.astro";
+import { CAL_EVENT_URL, CONTACT_EMAIL } from "../consts";
+interface Props {
+  heading?: string;
+  lede?: string;
+  kicker?: string;
+}
+const { heading, lede, kicker } = Astro.props;
+---
+
+<section class="book-cta">
+  {kicker && (
+    <Kicker number={kicker.split(" / ")[0]}>{kicker.split(" / ")[1]}</Kicker>
+  )}
+  {heading && <h2>{heading}</h2>}
+  {lede && <p>{lede}</p>}
+  <div class="actions">
+    <Button href={CAL_EVENT_URL} primary>
+      Book a 30-minute intro call ↵
+    </Button>
+    <Button href={`mailto:${CONTACT_EMAIL}`}>Email me</Button>
+  </div>
+  <p class="muted email-line">
+    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+  </p>
+</section>
+<style>
+  .book-cta {
+    margin-top: var(--section-gap);
+  }
+  .email-line {
+    font: 13px var(--mono);
+  }
+</style>

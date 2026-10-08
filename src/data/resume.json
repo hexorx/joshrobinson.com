@@ -1,11 +1,11 @@
 {
-  "_comment": "Verified facts from HEX-440. Unknown copy stays visibly marked [Placeholder]. This file is the only source of resume facts.",
+  "_comment": "Facts from the consulting copy deck and the existing verified resume file. Public pages use the deck's wording. Do not put placeholder text here.",
   "name": "Josh Robinson",
-  "headline": "I architect AI systems that ship to production.",
+  "headline": "I help small and mid-sized businesses find where AI actually helps, set it up, and get their teams using it.",
   "location": "Newton, IA",
-  "email": "hexorx@pm.me",
+  "email": "hire@joshrobinson.com",
   "url": "https://joshrobinson.com",
-  "summary": "[Placeholder] Career summary",
+  "summary": "A résumé, written for the people who might hire me. Here's what I've built, where I built it, and what each one means for your business.",
   "profiles": [
     {
       "network": "GitHub",
@@ -20,85 +20,127 @@
     {
       "ref": "HEAD",
       "company": "BLDX",
-      "role": "CTO & Co-Founder",
+      "role": "CTO and co-founder",
       "start": "2021",
       "end": "present",
       "current": true,
       "highlights": [
-        "Construction AI",
-        "[Placeholder] Outcomes"
+        "Set the technical direction from the company's founding and lead a small engineering team.",
+        "AI features have been in production with real users for more than two years."
       ]
     },
     {
-      "ref": "main",
-      "company": "Bproto Labs",
-      "role": "Founder",
+      "ref": "consulting",
+      "company": "Independent consulting",
+      "role": "Technology consulting",
       "start": "2018",
       "end": "present",
       "current": true,
       "highlights": [
-        "Consulting",
-        "[Placeholder] Outcomes"
+        "Advised organizations on their technology, architecture, and engineering practice.",
+        "Recommended practical build plans that fit small teams."
+      ]
+    },
+    {
+      "ref": "main",
+      "company": "American Red Cross",
+      "role": "UI Architect",
+      "start": "2015",
+      "end": "2018",
+      "current": false,
+      "highlights": [
+        "Built the online donation forms. Every online donation made on the site ran through code I wrote.",
+        "Built a living style guide that product owners used to test options for donation campaigns."
+      ]
+    },
+    {
+      "ref": "v5",
+      "company": "YouBase",
+      "role": "Co-founder and CTO",
+      "start": "2016",
+      "end": "2023",
+      "current": false,
+      "highlights": [
+        "Led engineering on secure data systems for life sciences and healthcare.",
+        "Worked with industry stakeholders so the systems met their standards and data-handling requirements."
+      ]
+    },
+    {
+      "ref": "tag",
+      "company": "BitBoss",
+      "role": "Co-founder",
+      "start": "2015",
+      "end": "2020",
+      "current": false,
+      "highlights": [
+        "Led teams building systems for real-money gaming, including mobile apps and the systems behind them.",
+        "Inventor on US Patent 10,373,426, System and Method for Provably Fair Gaming, granted in 2019."
+      ]
+    },
+    {
+      "ref": "v4",
+      "company": "Aetna / iTriage",
+      "role": "Web and Server Platform Architect",
+      "start": "2013",
+      "end": "2014",
+      "current": false,
+      "highlights": [
+        "Platform architecture for iTriage, a consumer health product inside a major healthcare company."
       ]
     },
     {
       "ref": "v3",
-      "company": "YouBase",
-      "role": "CTO",
-      "start": "[Placeholder]",
-      "end": "[Placeholder]",
+      "company": "Bloomberg",
+      "role": "Ruby on Rails Developer",
+      "start": "2012",
+      "end": "2013",
       "current": false,
       "highlights": [
-        "[Placeholder] Responsibilities",
-        "[Placeholder] Outcomes"
+        "Worked on processing and indexing large data sets and improving system performance."
       ]
     },
     {
       "ref": "v2",
-      "company": "BitBoss",
-      "role": "Co-Founder",
-      "start": "[Placeholder]",
-      "end": "[Placeholder]",
+      "company": "ShortTermHousing",
+      "role": "CTO",
+      "start": "2010",
+      "end": "2012",
       "current": false,
       "highlights": [
-        "Inventor on US Patent 10,373,426",
-        "[Placeholder] Outcomes"
+        "Built the product from scratch and automated how it was deployed."
       ]
     },
     {
-      "ref": "v1",
-      "company": "American Red Cross",
-      "role": "[Placeholder] Role",
-      "start": "[Placeholder]",
-      "end": "[Placeholder]",
+      "ref": "earlier-aha",
+      "company": "Aha! Labs",
+      "role": "Principal Engineer",
+      "start": "2014",
+      "end": "2015",
       "current": false,
       "highlights": [
-        "[Placeholder] Responsibilities",
-        "[Placeholder] Outcomes"
+        "Principal Engineer."
       ]
     },
     {
-      "ref": "v0.2",
-      "company": "Aetna/iTriage",
-      "role": "[Placeholder] Role",
-      "start": "[Placeholder]",
-      "end": "[Placeholder]",
+      "ref": "earlier-teliax",
+      "company": "Teliax",
+      "role": "Senior Lead Developer",
+      "start": "2006",
+      "end": "2010",
       "current": false,
       "highlights": [
-        "[Placeholder] Responsibilities",
-        "[Placeholder] Outcomes"
+        "Senior Lead Developer."
       ]
     },
     {
-      "ref": "v0.1",
-      "company": "Bloomberg",
-      "role": "[Placeholder] Role",
-      "start": "[Placeholder]",
-      "end": "[Placeholder]",
-      "current": false,
+      "ref": "community-codecraftsmen",
+      "company": "CodeCraftsmen",
+      "role": "Co-founder and advisor",
+      "start": "2017",
+      "end": "present",
+      "current": true,
       "highlights": [
-        "[Placeholder] Responsibilities",
-        "[Placeholder] Outcomes"
+        "Part-time technical strategy, team management, and mentoring developers."
       ]
     }
   ],
@@ -106,31 +148,48 @@
     {
       "name": "US Patent 10,373,426",
       "url": "https://patents.google.com/patent/US10373426B2/en",
-      "description": "Inventor"
+      "description": "System and Method for Provably Fair Gaming. Inventor, granted 2019."
+    },
+    {
+      "name": "countries",
+      "url": "https://github.com/countries/countries",
+      "description": "Original author of the open-source Ruby gem for country, currency, and phone data."
     },
     {
       "name": "Introducing Meteor",
       "url": "",
-      "description": "Co-author \u00b7 Apress, 2015"
-    },
-    {
-      "name": "countries",
-      "url": "https://rubygems.org/gems/countries",
-      "description": "Author of the Ruby gem"
+      "description": "Co-author, with Aaron Gray and David Titarenco. Apress, 2015."
     },
     {
       "name": "currencies",
       "url": "https://rubygems.org/gems/currencies",
-      "description": "Author of the Ruby gem"
+      "description": "Author of the Ruby gem."
     }
   ],
   "skills": [
     {
-      "group": "[Placeholder] Skills group",
+      "group": "AI models and tools",
       "items": [
-        "[Placeholder] Skill",
-        "[Placeholder] Skill"
+        "OpenAI",
+        "Anthropic",
+        "xAI",
+        "Mistral",
+        "LangChain",
+        "Vercel AI SDK",
+        "LangSmith"
       ]
+    },
+    {
+      "group": "Data",
+      "items": ["PostgreSQL", "MongoDB", "MySQL", "data pipelines", "APIs and system integration"]
+    },
+    {
+      "group": "Infrastructure",
+      "items": ["AWS", "Docker", "Kubernetes"]
+    },
+    {
+      "group": "Languages",
+      "items": ["Python", "TypeScript", "JavaScript", "Ruby"]
     }
   ],
   "education": [
@@ -140,12 +199,12 @@
       "year": "2003"
     }
   ],
-  "targetRole": "[Placeholder] Target role",
+  "targetRole": "",
   "address": {
     "locality": "Newton",
     "region": "IA"
   },
   "community": [
-    "Ran the Denver MongoDB meetup"
+    "Denver MongoDB Meetup. I ran it, bringing local developers together to learn from each other."
   ]
 }

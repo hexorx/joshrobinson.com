@@ -5,7 +5,7 @@ import raw from "../data/resume.json";
 const Resume = z.object({
   name: z.string(),
   headline: z.string(),
-  targetRole: z.string(),
+  targetRole: z.string().default(""),
   address: z.object({ locality: z.string(), region: z.string() }),
   location: z.string().default(""),
   email: z.string().default(""),
@@ -24,7 +24,7 @@ const Resume = z.object({
         start: z.string(),
         end: z.string(),
         location: z.string().default(""),
-        highlights: z.array(z.string()).min(2).max(4),
+        highlights: z.array(z.string()).min(1).max(4),
       }),
     )
     .default([]),

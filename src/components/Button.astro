@@ -2,10 +2,16 @@
 interface Props {
   href: string;
   primary?: boolean;
+  external?: boolean;
 }
-const { href, primary = false } = Astro.props;
+const { href, primary = false, external = false } = Astro.props;
 ---
 
-<a href={href} class:list={["button", { primary }]}>
+<a
+  href={href}
+  class:list={["button", { primary }]}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
   <slot />
 </a>

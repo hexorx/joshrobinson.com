@@ -10,7 +10,7 @@ export function readingMinutes(body = ""): number {
   );
 }
 export function postLink(post: Post): string {
-  return `/blog/${post.id}/`;
+  return `/writing/${post.id}/`;
 }
 export function isoDate(date: Date): string {
   return date.toISOString().slice(0, 10);

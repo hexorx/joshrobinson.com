@@ -1,26 +1,18 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { readFileSync } from "node:fs";
-const resume = JSON.parse(
-  readFileSync(new URL("../src/data/resume.json", import.meta.url), "utf8"),
-);
 for (const width of [1440, 390]) {
-  test(`career source, S07 and accessibility at ${width}px`, async ({
+  test(`track record, S07 and accessibility at ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/resume/");
-    await expect(page.locator(".entry")).toHaveCount(resume.experience.length);
-    for (const job of resume.experience) {
-      const entry = page.locator(".entry").filter({ hasText: job.company });
-      await expect(entry).toContainText(job.role);
-      await expect(entry).toContainText(job.start);
-      await expect(entry).toContainText(job.end);
-      await expect(entry.locator(".job li")).toHaveCount(job.highlights.length);
-      expect(
-        await entry.evaluate((el) => el.classList.contains("current")),
-      ).toBe(job.current);
-    }
+    await page.goto("/track-record/");
+    await expect(page.locator("h1")).toHaveText("Track record");
+    await expect(page.locator("body")).toContainText("BLDX");
+    await expect(page.locator("body")).toContainText("American Red Cross");
+    await expect(page.locator("body")).toContainText("US Patent 10,373,426");
+    await expect(page.locator("body")).not.toContainText("[Placeholder]");
+    await expect(page.locator("body")).not.toContainText("Download CV");
+    await expect(page.locator("body")).not.toContainText("open to");
     const slot = page.locator('[data-mascot-slot="S07"]');
     await expect(slot).toHaveCSS("width", width === 1440 ? "150px" : "110px");
     await expect(slot).toHaveCSS("height", width === 1440 ? "190px" : "150px");
@@ -46,27 +38,19 @@ for (const width of [1440, 390]) {
           .analyze()
       ).violations,
     ).toEqual([]);
-    await page.evaluate(() => document.fonts.ready);
     await page.screenshot({
       path: `docs/screenshots/resume-${width}.png`,
       fullPage: true,
     });
-    await page.evaluate(() => {
-      window.print = () => {
-        document.body.dataset.printCalled = "true";
-      };
-    });
-    await page.getByRole("button", { name: "Download PDF" }).click();
-    await expect(page.locator("body")).toHaveAttribute(
-      "data-print-called",
-      "true",
-    );
   });
 }
-test("print removes chrome and grid and preserves facts in black ink", async ({
-  page,
-}) => {
+test("resume redirects to the track record", async ({ page }) => {
   await page.goto("/resume/");
+  await expect(page).toHaveURL(/\/track-record\/?$/);
+  await expect(page.locator("h1")).toHaveText("Track record");
+});
+test("print removes chrome and the mascot", async ({ page }) => {
+  await page.goto("/track-record/");
   await page.emulateMedia({ media: "print" });
   await expect(page.locator(".site-header")).toBeHidden();
   await expect(page.locator("footer")).toBeHidden();
@@ -75,14 +59,4 @@ test("print removes chrome and grid and preserves facts in black ink", async ({
     "background-color",
     "rgb(255, 255, 255)",
   );
-  await expect(page.locator(".ref").first()).toHaveCSS("color", "rgb(0, 0, 0)");
-  for (const job of resume.experience)
-    await expect(
-      page.locator(".entry").filter({ hasText: job.company }),
-    ).toBeVisible();
-  await page.pdf({
-    path: "docs/screenshots/resume-print.pdf",
-    preferCSSPageSize: true,
-    printBackground: false,
-  });
 });

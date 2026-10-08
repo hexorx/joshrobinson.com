@@ -13,19 +13,11 @@ for (const width of [1440, 390]) {
     await expect(page.locator("body")).not.toContainText("[Placeholder]");
     await expect(page.locator("body")).not.toContainText("Download CV");
     await expect(page.locator("body")).not.toContainText("open to");
-    const slot = page.locator('[data-mascot-slot="S07"]');
+    const slot = page.locator('[data-brand-mark="S07"]');
     await expect(slot).toHaveCSS("width", width === 1440 ? "150px" : "110px");
     await expect(slot).toHaveCSS("height", width === 1440 ? "190px" : "150px");
-    expect(
-      await slot
-        .locator("img")
-        .evaluate(
-          (img: HTMLImageElement) =>
-            img.complete &&
-            img.naturalWidth === 600 &&
-            img.naturalHeight === 760,
-        ),
-    ).toBeTruthy();
+    await expect(slot).toHaveText(">_");
+    await expect(slot.locator("img")).toHaveCount(0);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -49,12 +41,12 @@ test("resume redirects to the track record", async ({ page }) => {
   await expect(page).toHaveURL(/\/track-record\/?$/);
   await expect(page.locator("h1")).toHaveText("Track record");
 });
-test("print removes chrome and the mascot", async ({ page }) => {
+test("print removes chrome and the brand mark", async ({ page }) => {
   await page.goto("/track-record/");
   await page.emulateMedia({ media: "print" });
   await expect(page.locator(".site-header")).toBeHidden();
   await expect(page.locator("footer")).toBeHidden();
-  await expect(page.locator('[data-mascot-slot="S07"]')).toBeHidden();
+  await expect(page.locator('[data-brand-mark="S07"]')).toBeHidden();
   await expect(page.locator("body")).toHaveCSS(
     "background-color",
     "rgb(255, 255, 255)",

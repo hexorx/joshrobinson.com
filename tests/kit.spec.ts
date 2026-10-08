@@ -1,28 +1,16 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 for (const width of [1440, 390]) {
-  test(`404 slot, keyboard recovery and accessibility at ${width}px`, async ({
+  test(`404 mark, keyboard recovery and accessibility at ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/404");
-    const slot = page.locator('[data-mascot-slot="S08"]');
+    const slot = page.locator('[data-brand-mark="S08"]');
     await expect(slot).toHaveCSS("width", width === 1440 ? "420px" : "300px");
     await expect(slot).toHaveCSS("height", width === 1440 ? "440px" : "320px");
-    await expect(slot.locator("img")).toHaveCSS("object-fit", "contain");
-    await expect(slot.locator("img")).toHaveCSS("object-position", "50% 100%");
-    await expect(slot.locator("img")).toHaveAttribute("width", "1200");
-    await expect(slot.locator("img")).toHaveAttribute("height", "1260");
-    expect(
-      await slot
-        .locator("img")
-        .evaluate(
-          (img: HTMLImageElement) =>
-            img.complete &&
-            img.naturalWidth === 1200 &&
-            img.naturalHeight === 1260,
-        ),
-    ).toBeTruthy();
+    await expect(slot).toHaveText(">_");
+    await expect(slot.locator("img")).toHaveCount(0);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

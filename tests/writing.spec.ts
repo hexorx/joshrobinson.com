@@ -13,7 +13,7 @@ for (const width of [1440, 390]) {
       "Plain-English notes on putting AI to work in a real business",
     );
     await expect(page.locator("body")).not.toContainText("[Placeholder]");
-    await expect(page.locator('[data-mascot-slot="S05"]')).toHaveCSS(
+    await expect(page.locator('[data-brand-mark="S05"]')).toHaveCSS(
       "width",
       width === 1440 ? "220px" : "170px",
     );

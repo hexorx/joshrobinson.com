@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import MascotSlot from "../components/MascotSlot.astro";
+import BrandMark from "../components/BrandMark.astro";
 import BookCta from "../components/BookCta.astro";
 import { personJsonLd, resume } from "../lib/resume";
 ---
@@ -20,18 +20,12 @@ import { personJsonLd, resume } from "../lib/resume";
     <Header />
     <main id="main-content" tabindex="-1">
       <header class="credentials hairline-grid">
-        <MascotSlot
+        <BrandMark
           slotId="S07"
-          pose="walking forward, purposeful"
-          src="/hexorx/hexorx-S07-walk.webp"
-          assetWidth={600}
-          assetHeight={760}
           desktopWidth={150}
           desktopHeight={190}
           mobileWidth={110}
           mobileHeight={150}
-          bottomAligned
-          alt="hexorx S07: walking forward, purposeful; final art pending"
         />
         <div>
           <p class="kicker">git log --career</p>
@@ -356,7 +350,7 @@ import { personJsonLd, resume } from "../lib/resume";
     margin-top: 8px;
   }
   @media print {
-    :global(span.mascot-slot[data-mascot-slot="S07"]) {
+    :global(span.brand-mark[data-brand-mark="S07"]) {
       display: none;
     }
   }

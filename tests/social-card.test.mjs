@@ -19,7 +19,7 @@ for (const title of [
     assert.equal(metadata.width, 1200);
     assert.equal(metadata.height, 630);
     assert.ok(image.length < 300_000);
-    // Changing even extreme titles cannot paint over the reserved S09 artwork.
+    // Changing even extreme titles cannot paint over the JR monogram.
     const region = { left: 750, top: 110, width: 370, height: 440 };
     const original = await sharp(await renderPostCard("Reference title"))
       .extract(region)
@@ -35,7 +35,7 @@ for (const title of [
   });
 }
 
-test("card renders readable proportional glyphs and visible supplied artwork", async () => {
+test("card renders readable proportional glyphs and visible JR monogram", async () => {
   const titleRegion = { left: 72, top: 136, width: 620, height: 270 };
   const glyphs = async (title) => {
     const pixels = await sharp(await renderPostCard(title))
@@ -58,5 +58,5 @@ test("card renders readable proportional glyphs and visible supplied artwork", a
   let visible = 0;
   for (let i = 0; i < pixels.length; i += 3)
     if (pixels[i] > 35 || pixels[i + 1] > 35 || pixels[i + 2] > 35) visible++;
-  assert.ok(visible > 10_000, "the S09 artwork must survive SVG rasterization");
+  assert.ok(visible > 5_000, "the JR monogram must survive SVG rasterization");
 });

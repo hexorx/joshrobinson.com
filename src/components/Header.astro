@@ -1,6 +1,6 @@
 ---
 import CommandPalette from "./CommandPalette.astro";
-import MascotSlot from "./MascotSlot.astro";
+import BrandMark from "./BrandMark.astro";
 import { CAL_EVENT_URL } from "../consts";
 const path = Astro.url.pathname;
 const nav = [
@@ -41,18 +41,12 @@ const nav = [
   <nav class="container" aria-label="Primary">
     <a class="logo" href="/" aria-label="Josh Robinson home">
       <span class="nav-avatar" aria-hidden="true">
-        <MascotSlot
+        <BrandMark
           slotId="S01"
-          pose="head, front"
-          src="/hexorx/hexorx-S01-head.webp"
-          assetWidth={96}
-          assetHeight={96}
           desktopWidth={34}
           desktopHeight={34}
           mobileWidth={34}
           mobileHeight={34}
-          hex
-          compact
         />
       </span>
       josh<span>@</span>robinson<span>:~</span>

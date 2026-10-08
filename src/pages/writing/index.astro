@@ -2,7 +2,7 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
-import MascotSlot from "../../components/MascotSlot.astro";
+import BrandMark from "../../components/BrandMark.astro";
 import WritingRows from "../../components/WritingRows.astro";
 import WritingNewsletter from "../../components/WritingNewsletter.astro";
 import { showNewsletter } from "../../consts";
@@ -31,17 +31,12 @@ const tags = await getTags();
             helps, what doesn't, and how to get started.
           </p>
         </div>
-        <MascotSlot
+        <BrandMark
           slotId="S05"
-          pose="reading"
-          src="/hexorx/hexorx-S05-existing.webp"
-          assetWidth={880}
-          assetHeight={880}
           desktopWidth={220}
           desktopHeight={220}
           mobileWidth={170}
           mobileHeight={170}
-          alt="Existing hexorx kit crop; S05 reading art pending"
         />
       </div>
       {tags.length > 0 && (

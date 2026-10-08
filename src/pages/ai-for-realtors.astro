@@ -1,0 +1,116 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BookCta from "../components/BookCta.astro";
+import { showRealtorQuote } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="AI for Realtors, Without the Hype · Josh Robinson"
+      description="Told to use AI but not sure where to start? I help agents and brokerages pick what's worth it, set it up, and learn to use it safely."
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <p class="kicker">examples / real-estate</p>
+      <h1>AI for Realtors, without the hype</h1>
+      <p class="lede">
+        You've been told to use AI. Here's someone who will sit down with you,
+        figure out what's actually worth it for your business, set it up, and
+        show you how to use it.
+      </p>
+
+      <section aria-labelledby="why-title">
+        <h2 id="why-title">Why this page exists</h2>
+        <p>
+          In real estate, the message to "use AI" is everywhere: conference
+          stages, brokerage meetings, software pitches. What's usually missing
+          is someone who shows agents how to actually get started.
+        </p>
+        <p>
+          If that sounds familiar, you're not behind. You just haven't had
+          anyone show you yet.
+        </p>
+      </section>
+
+      <section aria-labelledby="help-title">
+        <h2 id="help-title">Where AI can help an agent or a team</h2>
+        <p class="example-label">// examples</p>
+        <p>Ideas to show what's possible. We'll pick what fits how you work.</p>
+        <ul class="deliverables">
+          <li>
+            <strong>Listing descriptions and marketing.</strong> Get a solid
+            first draft from your notes and photos, then make it yours. You stay
+            in charge of every word, including fair housing language.
+          </li>
+          <li>
+            <strong>Follow-up that doesn't slip.</strong> Draft personal
+            follow-ups after showings and open houses, and keep your CRM up to
+            date without the typing.
+          </li>
+          <li>
+            <strong>Making long documents readable.</strong> Turn inspection
+            reports and disclosures into a first-pass summary you review before
+            sharing with clients.
+          </li>
+          <li>
+            <strong>Deadlines and checklists.</strong> Keep every transaction's
+            dates and to-dos in front of you so nothing gets missed.
+          </li>
+          <li>
+            <strong>Market updates and social posts.</strong> Turn your local
+            knowledge into a regular newsletter or posts in a fraction of the
+            time.
+          </li>
+          <li>
+            <strong>For brokerages and teams.</strong> Shared tools, simple
+            rules about client data, and training so every agent uses AI the
+            same, safe way.
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="together-title">
+        <h2 id="together-title">How we'd work together</h2>
+        <p>Same three steps as any business:</p>
+        <ol class="deliverables">
+          <li>
+            <strong>Explore.</strong> We look at your week and find the two or
+            three things AI should take off your plate.
+          </li>
+          <li>
+            <strong>Set up.</strong> I set up the tools and connect them to what
+            you already use, like your CRM and email.
+          </li>
+          <li>
+            <strong>Train.</strong> I show you, or your whole team, how to use
+            them, check them, and stay on the right side of the rules.
+          </li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="caution-title">
+        <h2 id="caution-title">A word of caution</h2>
+        <p>
+          AI gets things wrong, and in real estate some mistakes are costly.
+          Part of what I teach is how to check AI's work, what never to paste
+          into it, and where a human always signs off.
+        </p>
+      </section>
+
+      {showRealtorQuote && (
+        <section aria-label="Realtor quote">
+          <blockquote />
+        </section>
+      )}
+
+      <BookCta heading="Came back from a conference wondering where to start? Let's talk." />
+    </main>
+    <Footer />
+  </body>
+</html>

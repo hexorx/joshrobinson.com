@@ -4,15 +4,16 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Terminal from "../components/Terminal.astro";
 import Button from "../components/Button.astro";
-import Kicker from "../components/Kicker.astro";
 import MascotSlot from "../components/MascotSlot.astro";
+import { CAL_EVENT_URL } from "../consts";
 ---
 
 <html lang="en">
   <head>
     <BaseHead
-      title="404 — Josh Robinson"
-      description="This page doesn't exist, or it moved."
+      title="Page not found · Josh Robinson"
+      description="This page doesn't exist. Head back home, or book a call if you were looking for help with AI."
+      canonical={false}
     />
     <meta name="robots" content="noindex" />
   </head>
@@ -35,15 +36,19 @@ import MascotSlot from "../components/MascotSlot.astro";
         />
       </div>
       <section aria-labelledby="error-title">
-        <Kicker number="404">path not found</Kicker>
+        <p class="kicker">$ cd ./this-page</p>
         <Terminal title="zsh — ./this-page">
-          <span class="command">$ cd ./this-page</span>
-          {"\n"}zsh: no such file or directory
+          <span class="command">error: no such file or directory</span>
         </Terminal>
-        <h1 id="error-title">This page doesn't exist, or it moved.</h1>
-        <Button href="/" primary>
-          Back home ↵
-        </Button>
+        <h1 id="error-title">That page doesn't exist.</h1>
+        <p>It may have moved when I rebuilt the site.</p>
+        <div class="actions">
+          <Button href="/" primary>
+            Go home
+          </Button>
+          <Button href="/services">See services</Button>
+          <Button href={CAL_EVENT_URL}>Book a call</Button>
+        </div>
       </section>
     </main>
     <Footer />

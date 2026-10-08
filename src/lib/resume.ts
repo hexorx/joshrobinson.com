@@ -5,6 +5,8 @@ import raw from "../data/resume.json";
 const Resume = z.object({
   name: z.string(),
   headline: z.string(),
+  targetRole: z.string().default(""),
+  address: z.object({ locality: z.string(), region: z.string() }),
   location: z.string().default(""),
   email: z.string().default(""),
   url: z.string().url(),
@@ -15,12 +17,14 @@ const Resume = z.object({
   experience: z
     .array(
       z.object({
+        ref: z.string(),
+        current: z.boolean(),
         company: z.string(),
         role: z.string(),
         start: z.string(),
         end: z.string(),
         location: z.string().default(""),
-        highlights: z.array(z.string()).default([]),
+        highlights: z.array(z.string()).min(1).max(4),
       }),
     )
     .default([]),
@@ -36,6 +40,7 @@ const Resume = z.object({
   skills: z
     .array(z.object({ group: z.string(), items: z.array(z.string()) }))
     .default([]),
+  community: z.array(z.string()),
   education: z
     .array(
       z.object({
@@ -57,7 +62,12 @@ export function personJsonLd(r: ResumeData) {
     "@type": "Person",
     name: r.name,
     url: r.url,
-    jobTitle: r.headline,
+    description: r.headline,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: r.address.locality,
+      addressRegion: r.address.region,
+    },
     ...(r.email ? { email: `mailto:${r.email}` } : {}),
     sameAs: r.profiles.map((p) => p.url),
   };

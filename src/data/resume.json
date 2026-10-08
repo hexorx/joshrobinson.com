@@ -1,51 +1,210 @@
 {
-  "_comment": "PLACEHOLDER resume data. Replace every value with Josh's real details. The /resume page and its Person JSON-LD are generated from this file.",
+  "_comment": "Facts from the consulting copy deck and the existing verified resume file. Public pages use the deck's wording. Do not put placeholder text here.",
   "name": "Josh Robinson",
-  "headline": "[Placeholder headline, e.g. role and focus]",
-  "location": "[Placeholder city, state]",
-  "email": "",
+  "headline": "I help small and mid-sized businesses find where AI actually helps, set it up, and get their teams using it.",
+  "location": "Newton, IA",
+  "email": "hire@joshrobinson.com",
   "url": "https://joshrobinson.com",
-  "summary": "[Placeholder: two or three sentences on what Josh does and the kind of work he wants.]",
+  "summary": "A résumé, written for the people who might hire me. Here's what I've built, where I built it, and what each one means for your business.",
   "profiles": [
     {
       "network": "GitHub",
       "url": "https://github.com/hexorx"
+    },
+    {
+      "network": "LinkedIn",
+      "url": "https://linkedin.com/in/hexorx"
     }
   ],
   "experience": [
     {
-      "company": "[Placeholder company]",
-      "role": "[Placeholder role]",
-      "start": "2020",
-      "end": "Present",
-      "location": "[Placeholder]",
+      "ref": "HEAD",
+      "company": "BLDX",
+      "role": "CTO and co-founder",
+      "start": "2021",
+      "end": "present",
+      "current": true,
       "highlights": [
-        "[Placeholder accomplishment with a measurable result]",
-        "[Placeholder accomplishment]"
+        "Set the technical direction from the company's founding and lead a small engineering team.",
+        "AI features have been in production with real users for more than two years."
+      ]
+    },
+    {
+      "ref": "consulting",
+      "company": "Independent consulting",
+      "role": "Technology consulting",
+      "start": "2018",
+      "end": "present",
+      "current": true,
+      "highlights": [
+        "Advised organizations on their technology, architecture, and engineering practice.",
+        "Recommended practical build plans that fit small teams."
+      ]
+    },
+    {
+      "ref": "main",
+      "company": "American Red Cross",
+      "role": "UI Architect",
+      "start": "2015",
+      "end": "2018",
+      "current": false,
+      "highlights": [
+        "Built the online donation forms. Every online donation made on the site ran through code I wrote.",
+        "Built a living style guide that product owners used to test options for donation campaigns."
+      ]
+    },
+    {
+      "ref": "v5",
+      "company": "YouBase",
+      "role": "Co-founder and CTO",
+      "start": "2016",
+      "end": "2023",
+      "current": false,
+      "highlights": [
+        "Led engineering on secure data systems for life sciences and healthcare.",
+        "Worked with industry stakeholders so the systems met their standards and data-handling requirements."
+      ]
+    },
+    {
+      "ref": "tag",
+      "company": "BitBoss",
+      "role": "Co-founder",
+      "start": "2015",
+      "end": "2020",
+      "current": false,
+      "highlights": [
+        "Led teams building systems for real-money gaming, including mobile apps and the systems behind them.",
+        "Inventor on US Patent 10,373,426, System and Method for Provably Fair Gaming, granted in 2019."
+      ]
+    },
+    {
+      "ref": "v4",
+      "company": "Aetna / iTriage",
+      "role": "Web and Server Platform Architect",
+      "start": "2013",
+      "end": "2014",
+      "current": false,
+      "highlights": [
+        "Platform architecture for iTriage, a consumer health product inside a major healthcare company."
+      ]
+    },
+    {
+      "ref": "v3",
+      "company": "Bloomberg",
+      "role": "Ruby on Rails Developer",
+      "start": "2012",
+      "end": "2013",
+      "current": false,
+      "highlights": [
+        "Worked on processing and indexing large data sets and improving system performance."
+      ]
+    },
+    {
+      "ref": "v2",
+      "company": "ShortTermHousing",
+      "role": "CTO",
+      "start": "2010",
+      "end": "2012",
+      "current": false,
+      "highlights": [
+        "Built the product from scratch and automated how it was deployed."
+      ]
+    },
+    {
+      "ref": "earlier-aha",
+      "company": "Aha! Labs",
+      "role": "Principal Engineer",
+      "start": "2014",
+      "end": "2015",
+      "current": false,
+      "highlights": [
+        "Principal Engineer."
+      ]
+    },
+    {
+      "ref": "earlier-teliax",
+      "company": "Teliax",
+      "role": "Senior Lead Developer",
+      "start": "2006",
+      "end": "2010",
+      "current": false,
+      "highlights": [
+        "Senior Lead Developer."
+      ]
+    },
+    {
+      "ref": "community-codecraftsmen",
+      "company": "CodeCraftsmen",
+      "role": "Co-founder and advisor",
+      "start": "2017",
+      "end": "present",
+      "current": true,
+      "highlights": [
+        "Part-time technical strategy, team management, and mentoring developers."
       ]
     }
   ],
   "projects": [
     {
-      "name": "[Placeholder project]",
+      "name": "US Patent 10,373,426",
+      "url": "https://patents.google.com/patent/US10373426B2/en",
+      "description": "System and Method for Provably Fair Gaming. Inventor, granted 2019."
+    },
+    {
+      "name": "countries",
+      "url": "https://github.com/countries/countries",
+      "description": "Original author of the open-source Ruby gem for country, currency, and phone data."
+    },
+    {
+      "name": "Introducing Meteor",
       "url": "",
-      "description": "[Placeholder one-line description]"
+      "description": "Co-author, with Aaron Gray and David Titarenco. Apress, 2015."
+    },
+    {
+      "name": "currencies",
+      "url": "https://rubygems.org/gems/currencies",
+      "description": "Author of the Ruby gem."
     }
   ],
   "skills": [
     {
-      "group": "[Placeholder group]",
+      "group": "AI models and tools",
       "items": [
-        "[Skill]",
-        "[Skill]"
+        "OpenAI",
+        "Anthropic",
+        "xAI",
+        "Mistral",
+        "LangChain",
+        "Vercel AI SDK",
+        "LangSmith"
       ]
+    },
+    {
+      "group": "Data",
+      "items": ["PostgreSQL", "MongoDB", "MySQL", "data pipelines", "APIs and system integration"]
+    },
+    {
+      "group": "Infrastructure",
+      "items": ["AWS", "Docker", "Kubernetes"]
+    },
+    {
+      "group": "Languages",
+      "items": ["Python", "TypeScript", "JavaScript", "Ruby"]
     }
   ],
   "education": [
     {
-      "school": "[Placeholder school]",
-      "credential": "[Placeholder degree or certificate]",
-      "year": ""
+      "school": "Hamilton College",
+      "credential": "A.A.S.",
+      "year": "2003"
     }
+  ],
+  "targetRole": "",
+  "address": {
+    "locality": "Newton",
+    "region": "IA"
+  },
+  "community": [
+    "Denver MongoDB Meetup. I ran it, bringing local developers together to learn from each other."
   ]
 }

@@ -1,22 +1,12 @@
 ---
-import { getPublishedPosts } from "../lib/posts";
-import { resume } from "../lib/resume";
-const posts = await getPublishedPosts();
-const pages = [
-  { title: "Home", href: "/" },
-  { title: "Selected work", href: "/#work" },
-  { title: "Writing", href: "/blog/" },
-  { title: "Resume", href: "/resume/" },
-  { title: "About / contact", href: "/about/" },
-  { title: "Tags", href: "/tags/" },
-];
+import { CAL_EVENT_URL, CONTACT_EMAIL } from "../consts";
 ---
 
 <dialog
   id="command-palette"
   aria-labelledby="command-title"
   aria-describedby="command-help"
-  data-email={resume.email}
+  data-email={CONTACT_EMAIL}
 >
   <div class="palette-heading">
     <h2 id="command-title">Search or jump to…</h2>
@@ -30,60 +20,164 @@ const pages = [
   <input
     id="command-search"
     type="search"
-    placeholder="Type a page, post or action…"
+    placeholder="Search or jump to…"
     autocomplete="off"
   />
   <div class="command-results">
     <section data-command-group>
-      <h3>Pages</h3>
-      <ul>
-        {pages.map((page) => (
-          <li data-command-item>
-            <a href={page.href}>
-              {page.title}
-              <span aria-hidden="true">↵</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-    <section data-command-group>
-      <h3>Posts</h3>
-      <ul>
-        {posts.map((post) => (
-          <li data-command-item>
-            <a href={`/blog/${post.id}/`}>
-              {post.data.title}
-              <span aria-hidden="true">↵</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-    <section data-command-group>
-      <h3>Actions</h3>
+      <h3>Get started</h3>
       <ul>
         <li data-command-item>
-          <button data-copy-email>
-            Copy email {resume.email ? "" : "[Placeholder]"}
-            <span aria-hidden="true">⧉</span>
-          </button>
-        </li>
-        <li data-command-item>
-          <a href="/rss.xml">
-            Open RSS<span aria-hidden="true">↗</span>
+          <a href={CAL_EVENT_URL}>
+            Book an intro call
+            <span class="sr-only">
+              book call meeting schedule talk hire contact
+            </span>
+            <span aria-hidden="true">↵</span>
           </a>
         </li>
         <li data-command-item>
-          <a href="/cv-placeholder.pdf" download>
-            Download CV PDF [Placeholder]<span aria-hidden="true">↓</span>
+          <a href={`mailto:${CONTACT_EMAIL}`}>
+            Email Josh
+            <span class="sr-only">email contact message hello</span>
+            <span aria-hidden="true">↵</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <button data-copy-email>
+            Copy email address
+            <span class="sr-only">copy email</span>
+            <span aria-hidden="true">⌘C</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+    <section data-command-group>
+      <h3>Services</h3>
+      <ul>
+        <li data-command-item>
+          <a href="/services">
+            All services
+            <span class="sr-only">services help offer pricing</span>
+            <span aria-hidden="true">/services</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/services#explore">
+            Explore: find where AI can help
+            <span class="sr-only">
+              assess assessment audit strategy plan where to start
+            </span>
+            <span aria-hidden="true">/services#explore</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/services#set-up">
+            Set up: build and connect AI
+            <span class="sr-only">
+              build agents integrate automation connect data tools
+            </span>
+            <span aria-hidden="true">/services#set-up</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/services#train">
+            Train: get your team using it
+            <span class="sr-only">training workshop team adoption policy</span>
+            <span aria-hidden="true">/services#train</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/#how-it-works">
+            How an engagement works
+            <span class="sr-only">process steps how</span>
+            <span aria-hidden="true">/#how-it-works</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section data-command-group>
+      <h3>Pages</h3>
+      <ul>
+        <li data-command-item>
+          <a href="/">
+            Home
+            <span class="sr-only">home start</span>
+            <span aria-hidden="true">/</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/track-record">
+            Track record
+            <span class="sr-only">
+              resume cv experience background career about
+            </span>
+            <span aria-hidden="true">/track-record</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/ai-for-realtors">
+            AI for Realtors
+            <span class="sr-only">real estate realtor agent brokerage</span>
+            <span aria-hidden="true">/ai-for-realtors</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/#examples">
+            Examples by industry
+            <span class="sr-only">
+              industries examples use cases logistics healthcare legal
+              accounting construction
+            </span>
+            <span aria-hidden="true">/#examples</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/#about">
+            About Josh
+            <span class="sr-only">about who bio</span>
+            <span aria-hidden="true">/#about</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/book">
+            Booking page
+            <span class="sr-only">calendar embed intro</span>
+            <span aria-hidden="true">/book</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/writing">
+            Writing
+            <span class="sr-only">blog posts articles notes</span>
+            <span aria-hidden="true">/writing</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section data-command-group>
+      <h3>Elsewhere</h3>
+      <ul>
+        <li data-command-item>
+          <a href="https://linkedin.com/in/hexorx" rel="me">
+            LinkedIn<span aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="https://github.com/hexorx" rel="me">
+            GitHub<span aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li data-command-item>
+          <a href="/rss.xml">
+            RSS feed<span aria-hidden="true">/rss.xml</span>
           </a>
         </li>
       </ul>
     </section>
   </div>
   <p class="empty" hidden>
-    No matching commands.
+    No matches. Try "services", "book a call", or "track record".
   </p>
   <p
     id="command-count"
@@ -93,7 +187,7 @@ const pages = [
     class="sr-only"
   ></p>
   <p id="command-status" role="status" aria-live="polite" class="sr-only"></p>
-  <p id="command-help">↑ ↓ move · Tab navigate · Enter select · Esc close</p>
+  <p id="command-help">↑↓ to move · ↵ to open · esc to close</p>
 </dialog>
 <script>
   const dialog = document.querySelector<HTMLDialogElement>("#command-palette")!;
@@ -131,8 +225,6 @@ const pages = [
       });
     const count = results().length;
     dialog.querySelector<HTMLElement>(".empty")!.hidden = count !== 0;
-    // Let key echo finish before the reader receives the final result count.
-    // Clearing also lets the same count be announced for a different query.
     cancelCount();
     countTimer = setTimeout(() => {
       if (dialog.open) countStatus.textContent = `${count} matching commands.`;
@@ -294,9 +386,8 @@ const pages = [
   }
   li span {
     color: var(--dim);
-  }
-  [aria-disabled] {
-    color: var(--mute);
+    font-family: var(--mono);
+    font-size: 12px;
   }
   #command-help {
     margin: 0;

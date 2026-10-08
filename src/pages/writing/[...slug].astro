@@ -2,6 +2,7 @@
 import { type CollectionEntry, render } from "astro:content";
 import { getPublishedPosts } from "../../lib/posts";
 import { postImagePath } from "../../lib/social-card.mjs";
+import { readingMinutes, adjacentPosts } from "../../lib/writing";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
@@ -14,12 +15,18 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const posts = await getPublishedPosts();
+const { previous, next } = adjacentPosts(posts, post.id);
 ---
 
 <BlogPost
   {...post.data}
   socialImage={{ src: postImagePath(post.id), width: 1200, height: 630 }}
+  headings={headings}
+  minutes={readingMinutes(post.body)}
+  previous={previous}
+  next={next}
 >
   <Content />
 </BlogPost>

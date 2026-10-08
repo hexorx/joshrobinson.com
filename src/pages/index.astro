@@ -1,60 +1,468 @@
 ---
-import Kicker from "../components/Kicker.astro";
-import Panel from "../components/Panel.astro";
 import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import FormattedDate from "../components/FormattedDate.astro";
-import { getPublishedPosts } from "../lib/posts";
-const recent = (await getPublishedPosts()).slice(0, 5);
+import Footer from "../components/Footer.astro";
+import Kicker from "../components/Kicker.astro";
+import StatusPill from "../components/StatusPill.astro";
+import Button from "../components/Button.astro";
+import Terminal from "../components/Terminal.astro";
+import MascotSlot from "../components/MascotSlot.astro";
+import BookCta from "../components/BookCta.astro";
+import { CAL_EVENT_URL, showStatusPill, showTestimonials } from "../consts";
+
+const terminalLabel =
+  "Josh Robinson, AI consultant. Services: explore, set up, train. Shipped work includes the BLDX AI platform, American Red Cross donation forms, a US patent, the countries Ruby gem, and the book Introducing Meteor.";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Josh Robinson · AI Consulting for Small and Mid-Sized Businesses"
+      description="Everyone says use AI. I'll show you how. I help businesses find where AI actually helps, build it, and train their teams. Book a short intro call."
+    />
   </head>
   <body>
     <Header />
     <main id="main-content" tabindex="-1">
-      <section class="intro hairline-grid">
-        <Kicker number="00">hello / world</Kicker>
-        <h1>Hi, I'm Josh Robinson.</h1>
-        <!-- PLACEHOLDER: replace with Josh's real intro. -->
-        <p class="placeholder lede">
-          [Placeholder intro: who Josh is, what he works on, and what he's
-          looking for.]
-        </p>
-        <p>
-          <a href="/resume">Read my resume</a> ·{" "}
-          <a href="/about">More about me</a>
-        </p>
-      </section>
-      <section id="work">
-        <Kicker number="01">selected work</Kicker>
-        <Panel>
-          <h2 slot="heading">Selected work</h2>
-          <p class="placeholder">
-            [Placeholder: selected projects will be added here.]
+      <section class="hero hairline-grid" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          {showStatusPill && <StatusPill>booking intro calls</StatusPill>}
+          <h1 id="hero-title">Everyone says use AI. I'll show you how.</h1>
+          <p class="lede">
+            I help small and mid-sized businesses find where AI actually helps,
+            set it up, and get their teams using it. You work with me directly.
+            No software to buy from me, no agency handoff.
           </p>
-        </Panel>
+          <div class="actions">
+            <Button href={CAL_EVENT_URL} primary>
+              Book a 30-minute intro call ↵
+            </Button>
+            <Button href="#services">See what I do</Button>
+          </div>
+          <p class="hero-meta mono">
+            Based in Newton, Iowa. I meet in person with businesses around Des
+            Moines and central Iowa, and work remotely with clients anywhere.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <MascotSlot
+            slotId="S02"
+            pose="waving"
+            src="/hexorx/home-S02.webp"
+            assetWidth={960}
+            assetHeight={1600}
+            desktopWidth={200}
+            desktopHeight={380}
+            mobileWidth={240}
+            mobileHeight={300}
+            bottomAligned
+            alt="hexorx, Josh Robinson's illustrated mascot; existing kit art while the S02 waving pose is pending"
+          />
+          <Terminal title="zsh — ~/josh" label={terminalLabel}>
+            {
+              "$ whoami\njosh robinson. ai consultant. builder. teacher.\n\n$ cat services.txt\nexplore   find where AI can actually help\nset-up    build it and connect it to your tools\ntrain     get your team using it, for real\n\n$ ls ./shipped\nbldx-ai-platform/   redcross-donation-forms/\nUS10373426.patent   countries.gem   introducing-meteor.pdf\n"
+            }
+          </Terminal>
+        </div>
       </section>
-      <section>
-        <Kicker number="02">writing</Kicker>
-        <h2>Recent writing</h2>
-        <ul>
-          {recent.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>{post.data.title}</a>{" "}
-              <FormattedDate date={post.data.pubDate} />
-            </li>
-          ))}
-        </ul>
+
+      <dl class="facts">
+        <div class="corner-brackets">
+          <dt>▪ in production</dt>
+          <dd>
+            2+ years
+            <small>AI features used by real people at BLDX</small>
+          </dd>
+        </div>
+        <div>
+          <dt>▪ building software</dt>
+          <dd>
+            20+ years
+            <small>Mostly as a founder or CTO</small>
+          </dd>
+        </div>
+        <div>
+          <dt>▪ trusted by</dt>
+          <dd>
+            Red Cross · Aetna · Bloomberg
+            <small>Big organizations where I've delivered</small>
+          </dd>
+        </div>
+        <div>
+          <dt>◆ patented</dt>
+          <dd>
+            US 10,373,426
+            <small>Inventor</small>
+          </dd>
+        </div>
+      </dl>
+
+      <section aria-labelledby="problem-title">
+        <Kicker number="01">the problem</Kicker>
+        <h2 id="problem-title">Everyone says "use AI." Nobody says how.</h2>
         <p>
-          <a href="/blog">All posts</a> · <a href="/rss.xml">RSS</a>
+          A friend of mine came back from an industry conference recently. Every
+          speaker said the same thing: you need to be using AI.
+        </p>
+        <p>
+          Then my friend looked around the room. Nobody knew where to start.
+        </p>
+        <p>
+          I hear that from business owners in every field. You're told AI will
+          change everything. You're sold a dozen tools that each promise to. And
+          you're left wondering which of it is real, what's safe to put your
+          customer data into, and who on your team is supposed to figure it out.
+        </p>
+        <p>
+          That gap is my job. I help you skip the hype, pick the few things that
+          will actually make a difference, and get them working.
+        </p>
+        <div class="point-grid">
+          <article class="point">
+            <p class="mono">&gt; not a tool</p>
+            <p>
+              I'm not selling you software. I recommend what fits, including
+              "you don't need anything new."
+            </p>
+          </article>
+          <article class="point">
+            <p class="mono">&gt; not an agency</p>
+            <p>You don't get handed off to a junior team. You work with me.</p>
+          </article>
+          <article class="point">
+            <p class="mono">&gt; not a slide deck</p>
+            <p>I build the thing, and I stay until your people can use it.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="services" aria-labelledby="services-title">
+        <Kicker number="02">services</Kicker>
+        <h2 id="services-title">
+          Three ways I help. Start with whichever fits.
+        </h2>
+        <p>
+          Most businesses go in this order. You don't have to. If you already
+          know what you want built, we can start there.
+        </p>
+        <div class="offer-grid">
+          <article class="offer">
+            <p class="mono">01 / explore</p>
+            <h3>Find where AI can actually help</h3>
+            <p>
+              I learn how your business really runs, then show you where AI will
+              save time or money and where it won't. You get a short,
+              plain-English plan with a clear first project.
+            </p>
+            <p>
+              <a href="/services#explore">Learn more</a>
+            </p>
+          </article>
+          <article class="offer">
+            <p class="mono">02 / set-up</p>
+            <h3>Build it and connect it</h3>
+            <p>
+              I build the AI tools, assistants, and automations your plan calls
+              for, and I connect them to the software and data you already use.
+              Then I test them on your real work before anyone relies on them.
+            </p>
+            <p>
+              <a href="/services#set-up">Learn more</a>
+            </p>
+          </article>
+          <article class="offer">
+            <p class="mono">03 / train</p>
+            <h3>Get your team using it</h3>
+            <p>
+              A tool nobody uses is a wasted purchase. I train your people on
+              the tools they'll actually use, with your own examples, so AI
+              becomes part of the job instead of a side project.
+            </p>
+            <p>
+              <a href="/services#train">Learn more</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how-it-works" aria-labelledby="process-title">
+        <Kicker number="03">how it works</Kicker>
+        <h2 id="process-title">Simple, step by step.</h2>
+        <div class="steps">
+          <article class="step">
+            <p class="mono">step 1 / talk</p>
+            <h3>A short intro call.</h3>
+            <p>
+              You tell me what's going on and what you've heard about AI. I tell
+              you honestly whether I can help.
+            </p>
+          </article>
+          <article class="step">
+            <p class="mono">step 2 / explore</p>
+            <h3>I learn your business.</h3>
+            <p>
+              I talk with you and the people doing the work, look at the tools
+              and data you already have, and find the best places to start.
+            </p>
+          </article>
+          <article class="step">
+            <p class="mono">step 3 / plan</p>
+            <h3>You get a clear plan.</h3>
+            <p>
+              A short written recommendation: what to do first, what it takes,
+              what it will cost, and what to skip. You decide whether to go
+              ahead.
+            </p>
+          </article>
+          <article class="step">
+            <p class="mono">step 4 / build</p>
+            <h3>I set it up.</h3>
+            <p>
+              I build and connect the tools, test them against your real
+              examples, and fix what doesn't hold up.
+            </p>
+          </article>
+          <article class="step">
+            <p class="mono">step 5 / train</p>
+            <h3>Your team learns it.</h3>
+            <p>
+              Hands-on training with your own work, plus simple written guides
+              your people can come back to.
+            </p>
+          </article>
+          <article class="step">
+            <p class="mono">step 6 / follow up</p>
+            <h3>I check back in.</h3>
+            <p>
+              We look at what's working, what isn't, and what's worth doing
+              next.
+            </p>
+          </article>
+        </div>
+        <p class="hero-meta mono">
+          Everything is built on your accounts and documented, so it stays
+          yours.
         </p>
       </section>
+
+      <section id="examples" aria-labelledby="examples-title">
+        <Kicker number="04">examples</Kicker>
+        <h2 id="examples-title">What this can look like in your business</h2>
+        <p class="example-label">// examples, not case studies</p>
+        <p>
+          Illustrations of the kind of work I do. Every business is different,
+          and the first step is always finding what fits yours.
+        </p>
+        <div class="example-grid">
+          <article class="example-card">
+            <h3>Real estate</h3>
+            <ul>
+              <li>
+                Draft listing descriptions and follow-up emails you edit,
+                instead of starting from a blank page.
+              </li>
+              <li>
+                Turn long inspection reports and disclosures into a first-pass
+                summary you check before it goes to a client.
+              </li>
+              <li>
+                Keep transaction checklists and deadlines from slipping through
+                the cracks.
+              </li>
+            </ul>
+            <p>
+              <a href="/ai-for-realtors">See: AI for Realtors</a>
+            </p>
+          </article>
+          <article class="example-card">
+            <h3>Professional services</h3>
+            <p class="muted">law, accounting, insurance agencies, consulting</p>
+            <ul>
+              <li>
+                Search years of your own documents by asking a question in plain
+                English.
+              </li>
+              <li>
+                Draft first versions of routine letters, proposals, and client
+                updates.
+              </li>
+              <li>
+                Pull key details out of incoming forms and paperwork so nobody
+                retypes them.
+              </li>
+            </ul>
+          </article>
+          <article class="example-card">
+            <h3>Logistics and distribution</h3>
+            <ul>
+              <li>
+                Read emails, orders, and shipping documents, and pull out what
+                matters.
+              </li>
+              <li>
+                Flag late or unusual shipments early, before a customer calls.
+              </li>
+              <li>
+                Give dispatch and customer service quick answers from your own
+                records.
+              </li>
+            </ul>
+          </article>
+          <article class="example-card wide">
+            <h3>Healthcare operations</h3>
+            <ul>
+              <li>
+                Cut down routine paperwork and intake work for front-office
+                staff.
+              </li>
+              <li>Help staff find answers in policies and procedures fast.</li>
+              <li>
+                Built with patient-data rules in mind from day one. I've worked
+                on healthcare systems that had to meet HIPAA requirements.
+              </li>
+            </ul>
+          </article>
+          <article class="example-card wide">
+            <h3>Industrial, construction, and facilities</h3>
+            <ul>
+              <li>
+                Read inspection reports, maintenance tickets, permits, and
+                contracts, and flag risk early.
+              </li>
+              <li>
+                Let managers ask questions about project or building records in
+                plain language.
+              </li>
+              <li>This one's close to home: it's what I build at BLDX.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="record-title">
+        <Kicker number="05">git log --career</Kicker>
+        <h2 id="record-title">I've built this for real.</h2>
+        <p>
+          I'm not new to AI and I'm not new to business software. Here's the
+          short version.
+        </p>
+        <ol class="career-log">
+          <li>
+            <span class="ref">HEAD</span>
+            <span>
+              <strong>
+                Built an AI platform with features in production for 2+ years
+              </strong>
+              <br />
+              BLDX, CTO and co-founder
+            </span>
+            <span class="when">2021 to now</span>
+          </li>
+          <li>
+            <span class="ref">main</span>
+            <span>
+              <strong>
+                Built the online donation forms. Every online donation ran
+                through my code
+              </strong>
+              <br />
+              American Red Cross
+            </span>
+            <span class="when">2015 to 2018</span>
+          </li>
+          <li>
+            <span class="ref">v4</span>
+            <span>
+              <strong>
+                Platform architecture for a consumer health product
+              </strong>
+              <br />
+              Aetna / iTriage
+            </span>
+            <span class="when">2013 to 2014</span>
+          </li>
+          <li>
+            <span class="ref">v3</span>
+            <span>
+              <strong>Processing and indexing large data sets</strong>
+              <br />
+              Bloomberg
+            </span>
+            <span class="when">2012 to 2013</span>
+          </li>
+          <li>
+            <span class="ref">tag</span>
+            <span>
+              <strong>Inventor, US Patent 10,373,426</strong>
+              <br />
+              BitBoss
+            </span>
+            <span class="when">granted 2019</span>
+          </li>
+        </ol>
+        <p>
+          <a href="/track-record">See the full track record →</a>
+        </p>
+      </section>
+
+      <section id="about" class="credentials" aria-labelledby="about-title">
+        <MascotSlot
+          slotId="S03"
+          pose="arms crossed"
+          src="/hexorx/home-S03.webp"
+          assetWidth={1000}
+          assetHeight={1000}
+          desktopWidth={300}
+          desktopHeight={300}
+          mobileWidth={240}
+          mobileHeight={240}
+          bottomAligned
+          alt="hexorx kit portrait; final S03 arms-crossed art pending"
+        />
+        <div>
+          <Kicker number="06">about</Kicker>
+          <h2 id="about-title">Hi, I'm Josh.</h2>
+          <p>
+            I've been building software for more than 20 years, mostly as a
+            founder or CTO. Today I'm CTO and co-founder of BLDX, where I lead
+            the team building an AI platform that reads building and
+            construction records and warns people about risk before it turns
+            into an insurance claim. Real users have relied on its AI features
+            for more than two years.
+          </p>
+          <p>
+            The part I'm best at isn't the code. It's sitting down with people
+            who know their business cold, like insurance, compliance, and
+            construction experts, learning how they actually work, and turning
+            that into AI that helps. Then explaining it in plain English.
+          </p>
+          <p>
+            I've also delivered inside big organizations, including the American
+            Red Cross, Aetna, and Bloomberg. So I know how to fit new technology
+            into a business that already has its own way of doing things.
+          </p>
+          <p>
+            I live in Newton, Iowa. If you're in Newton, Des Moines, or anywhere
+            in central Iowa, I'm happy to come meet you and your team in person.
+            If you're farther away, we'll work together remotely, and that works
+            just as well.
+          </p>
+        </div>
+      </section>
+
+      {showTestimonials && (
+        <section aria-labelledby="testimonials-title">
+          <Kicker number="07">what clients say</Kicker>
+          <h2 id="testimonials-title">What clients say</h2>
+        </section>
+      )}
+
+      <BookCta
+        kicker="08 / let's talk"
+        heading="Not sure where to start? That's the right time to call."
+        lede={`Book a short intro call. Tell me what's going on in your business and what you've been hearing about AI. I'll give you an honest take on where it can help, even if the answer is "not yet."`}
+      />
     </main>
     <Footer />
   </body>

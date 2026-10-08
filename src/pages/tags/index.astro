@@ -15,11 +15,17 @@ const tags = await getTags();
   <body>
     <Header />
     <main id="main-content" tabindex="-1">
+      <p class="kicker">
+        <a href="/writing/">04 / writing</a> / index
+      </p>
       <h1>Tags</h1>
       <ul>
         {tags.map(({ tag, count }) => (
           <li>
-            <a href={`/tags/${tag}/`}>#{tag}</a> ({count})
+            <a class="button mono" href={`/tags/${tag}/`}>
+              #{tag}
+            </a>{" "}
+            ({count})
           </li>
         ))}
       </ul>
@@ -27,3 +33,16 @@ const tags = await getTags();
     <Footer />
   </body>
 </html>
+
+<style>
+  ul {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    font: 13px var(--mono);
+  }
+</style>

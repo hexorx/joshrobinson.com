@@ -1,0 +1,318 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Kicker from "../components/Kicker.astro";
+import BookCta from "../components/BookCta.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="AI Consulting Services · Explore, Set Up, Train · Josh Robinson"
+      description="Three ways to work with me: find where AI can help your business, build and connect it to your tools, and train your team to actually use it."
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <p class="kicker">services</p>
+      <h1>Three ways to work with me</h1>
+      <p class="lede">
+        You don't need an AI strategy department. You need someone who can look
+        at your business, tell you straight where AI fits, build it, and make
+        sure your people use it. That's what I do. Pick one, or do all three in
+        order.
+      </p>
+      <p>
+        <strong>How pricing works:</strong> Every business is different, so I
+        don't list prices. After our intro call, I'll send a clear proposal with
+        the scope, the timeline, and a fixed quote or estimate. No surprises.
+      </p>
+
+      <section id="explore" aria-labelledby="explore-title">
+        <Kicker number="01">explore</Kicker>
+        <h2 id="explore-title">Explore: find where AI can actually help</h2>
+        <p class="lede">
+          Before you spend money on tools, find out what's worth doing. I'll
+          learn how your business runs and show you where AI will pay off, where
+          it won't, and what to do first.
+        </p>
+        <h3>Who it's for</h3>
+        <ul class="deliverables">
+          <li>
+            Owners and managers who keep hearing "you should use AI" and want a
+            straight answer about what that means for them.
+          </li>
+          <li>
+            Teams already trying a few AI tools on their own, without a plan or
+            any rules.
+          </li>
+          <li>
+            Businesses that want a second opinion before signing up for an AI
+            product or a big contract.
+          </li>
+        </ul>
+        <h3>What you get</h3>
+        <ul class="deliverables">
+          <li>
+            Time with me learning your business: your goals, your bottlenecks,
+            and the work that eats your team's week.
+          </li>
+          <li>
+            An honest look at the tools and data you already have. Often the
+            best first step uses software you already pay for.
+          </li>
+          <li>
+            A clear, short list of opportunities, ranked by how much they'd help
+            and how hard they are.
+          </li>
+          <li>A plain-English plan you can act on, with or without me.</li>
+        </ul>
+        <h3>Typical deliverables</h3>
+        <ul class="deliverables">
+          <li>
+            Interviews or working sessions with you and the people doing the
+            work.
+          </li>
+          <li>
+            A short written report: top opportunities, a recommended first
+            project, rough effort, and what to skip.
+          </li>
+          <li>
+            Risks to watch, in plain language: customer data and privacy,
+            accuracy, and where a person needs to stay in the loop.
+          </li>
+          <li>
+            Tool recommendations, including when the right answer is "you don't
+            need anything new."
+          </li>
+          <li>
+            A readout meeting to walk your team through the plan and answer
+            questions.
+          </li>
+        </ul>
+        <h3>How it starts</h3>
+        <p>
+          A short intro call. If it's a fit, I'll send a clear proposal with the
+          scope, timing, and a fixed quote or estimate.
+        </p>
+      </section>
+
+      <section id="set-up" aria-labelledby="setup-title">
+        <Kicker number="02">set-up</Kicker>
+        <h2 id="setup-title">Set up: build it and connect it</h2>
+        <p class="lede">
+          This is where the plan turns into something your team can actually
+          use. I build the AI tools and automations, connect them to your
+          software and data, and test them on your real work.
+        </p>
+        <h3>Who it's for</h3>
+        <ul class="deliverables">
+          <li>
+            Businesses that know what they want AI to do (or just finished an
+            Explore) and need someone to build it properly.
+          </li>
+          <li>
+            Teams whose information is spread across email, spreadsheets,
+            documents, and business software that don't talk to each other.
+          </li>
+          <li>
+            Companies without in-house developers, or with a small IT team
+            that's already stretched.
+          </li>
+        </ul>
+        <h3>What you get</h3>
+        <p>Depending on what your plan calls for:</p>
+        <ul class="deliverables">
+          <li>
+            <strong>AI assistants that know your business.</strong> Ask a
+            question in plain English and get an answer drawn from your own
+            documents and records, not the open internet.
+          </li>
+          <li>
+            <strong>AI agents.</strong> "Agent" just means an AI that can take
+            steps on its own, like reading an incoming email, pulling out the
+            details, and updating the right system. I build these with
+            guardrails, so a person approves anything important.
+          </li>
+          <li>
+            <strong>Connections to your existing tools.</strong> Your CRM,
+            email, shared drives, spreadsheets, and industry software, so
+            information flows without copy and paste.
+          </li>
+          <li>
+            <strong>Workflow automations</strong> for repetitive work, like
+            sorting, summarizing, drafting, and routing.
+          </li>
+          <li>
+            <strong>Quality checks.</strong> I test the AI against real examples
+            from your business and track how it does, so you know it's reliable
+            before anyone depends on it. It's the same discipline I use at BLDX.
+          </li>
+        </ul>
+        <p class="aside-note">
+          // built with: OpenAI · Anthropic · xAI · Mistral · LangChain · Vercel
+          AI SDK · LangSmith
+        </p>
+        <p class="muted">
+          I use whichever model fits the job. I'm not tied to one vendor.
+        </p>
+        <h3>Typical deliverables</h3>
+        <ul class="deliverables">
+          <li>A working tool or workflow, set up in your accounts.</li>
+          <li>Connections to the systems agreed in the plan.</li>
+          <li>
+            A test set of real examples and a record of how the AI performed
+            against it.
+          </li>
+          <li>
+            Access and data settings reviewed, so sensitive information goes
+            only where it should.
+          </li>
+          <li>
+            Plain-English documentation: what it does, how to use it, what to do
+            when something looks wrong.
+          </li>
+          <li>A handoff session with whoever will own it day to day.</li>
+        </ul>
+        <h3>How it starts</h3>
+        <p>
+          Usually with an Explore, so we're building the right thing. If you
+          already have a clear, well-defined project, we can start with a short
+          scoping call instead. Either way, you get a proposal with a fixed
+          quote or estimate before any build work starts.
+        </p>
+      </section>
+
+      <section id="train" aria-labelledby="train-title">
+        <Kicker number="03">train</Kicker>
+        <h2 id="train-title">Train: get your team actually using it</h2>
+        <p class="lede">
+          Most AI rollouts don't fail because the tech is bad. They fail because
+          nobody changes how they work. I train your people on the tools they'll
+          really use, with examples from their own jobs.
+        </p>
+        <h3>Who it's for</h3>
+        <ul class="deliverables">
+          <li>
+            Teams that have AI tools (ChatGPT, Copilot, or something built for
+            them) but barely use them.
+          </li>
+          <li>Businesses rolling out a new AI tool and wanting it to stick.</li>
+          <li>
+            Leaders who want clear, simple rules about what's OK to put into AI
+            and what isn't.
+          </li>
+        </ul>
+        <h3>What you get</h3>
+        <ul class="deliverables">
+          <li>
+            Hands-on sessions built around your team's real tasks, not generic
+            demos.
+          </li>
+          <li>
+            Practical habits: how to ask AI for what you need, how to check its
+            work, and when not to trust it.
+          </li>
+          <li>Simple written guidance your team can follow on day one.</li>
+          <li>
+            Someone to call with questions while the new habits take hold.
+          </li>
+        </ul>
+        <h3>Typical deliverables</h3>
+        <ul class="deliverables">
+          <li>
+            Workshops for your team, grouped by role where it helps (front
+            office, sales, operations, leadership).
+          </li>
+          <li>
+            A short playbook for each group: tasks to use AI for, example
+            requests to copy, and how to check results.
+          </li>
+          <li>
+            A plain-language AI use policy: what data can go into which tools,
+            and what needs a human review.
+          </li>
+          <li>
+            A briefing for owners and managers on what to expect and how to
+            measure whether it's working.
+          </li>
+          <li>Follow-up office hours.</li>
+        </ul>
+        <h3>How it starts</h3>
+        <p>
+          Tell me how big your team is and what tools you use now. I'll suggest
+          a format that fits and send a proposal with a fixed quote or estimate.
+          Training can happen in person around Newton, Des Moines, and central
+          Iowa, or remotely anywhere.
+        </p>
+      </section>
+
+      <BookCta
+        heading="Let's figure out where to start."
+        lede="Book a short intro call. We'll talk about your business, and I'll tell you which of these makes sense first, if any."
+      />
+
+      <section class="faq" aria-label="Common questions">
+        <details>
+          <summary>How much does it cost?</summary>
+          <p>
+            It depends on what you need, so I don't post prices. After our intro
+            call, I'll send a clear proposal with a fixed quote or estimate.
+            You'll know the cost before you commit to anything.
+          </p>
+        </details>
+        <details>
+          <summary>Do I need to buy new software?</summary>
+          <p>
+            Not necessarily. I often start with tools you already pay for. When
+            something new is worth it, I'll explain why and what it costs.
+          </p>
+        </details>
+        <details>
+          <summary>Is my data safe?</summary>
+          <p>
+            It's one of the first things we look at. I'll show you which tools
+            keep your data private, set up access properly, and write down
+            simple rules for your team. I've worked on healthcare systems that
+            had to meet HIPAA requirements, so I take this seriously.
+          </p>
+        </details>
+        <details>
+          <summary>Will AI replace my staff?</summary>
+          <p>
+            That's not what I build. The goal is to take the repetitive work off
+            your people's plates so they can spend more time on the work only
+            they can do.
+          </p>
+        </details>
+        <details>
+          <summary>What if AI isn't right for us yet?</summary>
+          <p>
+            Then I'll tell you. An honest "not yet" is a fine result for an
+            intro call.
+          </p>
+        </details>
+        <details>
+          <summary>Do you only work with businesses in Iowa?</summary>
+          <p>
+            No. I'm based in Newton, Iowa. I meet local clients in person around
+            Newton, Des Moines, and central Iowa, and I work remotely with
+            businesses anywhere.
+          </p>
+        </details>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  h3 {
+    margin-top: 28px;
+  }
+  .faq {
+    margin-top: var(--section-gap);
+  }
+</style>

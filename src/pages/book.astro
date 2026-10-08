@@ -1,0 +1,83 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { CAL_EVENT_URL, CONTACT_EMAIL } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Book an intro call · Josh Robinson"
+      description="Book a 30-minute intro call with Josh Robinson. Tell me about your business and I'll give you an honest take on where AI can help."
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <p class="kicker">book / intro</p>
+      <h1>Book a 30-minute intro call</h1>
+      <p class="lede">
+        Tell me what's going on in your business and what you've been hearing
+        about AI. I'll give you an honest take on where it can help, even if the
+        answer is "not yet."
+      </p>
+      <div id="cal-inline" class="book-embed"></div>
+      <p>
+        If the calendar doesn't load,
+        <a href={CAL_EVENT_URL}>open the intro call on Cal.com</a>.
+      </p>
+      <p class="muted">
+        Or email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+    </main>
+    <Footer />
+  </body>
+</html>
+<script is:inline>
+  (function (C, A, L) {
+    let p = function (a, ar) {
+      a.q.push(ar);
+    };
+    let d = C.document;
+    C.Cal =
+      C.Cal ||
+      function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () {
+            p(api, arguments);
+          };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://cal.com" });
+  Cal("inline", {
+    elementOrSelector: "#cal-inline",
+    calLink: "joshrobinson/intro",
+    config: { layout: "month_view", theme: "dark" },
+  });
+  Cal("ui", {
+    theme: "dark",
+    cssVarsPerTheme: { dark: { "cal-brand": "#C6F432" } },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+</script>

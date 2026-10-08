@@ -1,0 +1,287 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 36px;
+  align-items: center;
+}
+.hero h1 {
+  margin-top: 20px;
+}
+.hero-meta {
+  margin-top: 24px;
+  color: var(--mute);
+  font-size: 12px;
+}
+.hero-visual {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  min-width: 0;
+}
+.hero-visual .terminal {
+  flex: 1;
+  min-width: 0;
+}
+.hero-visual pre {
+  font-size: 12px;
+  padding: 16px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 24px 0 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.facts > div {
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.facts > div:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.facts > div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+.facts dt {
+  font: 12px var(--mono);
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.facts dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.facts small {
+  display: block;
+  color: var(--mute);
+  font: 12px/1.6 var(--mono);
+  margin-top: 6px;
+}
+.point-grid,
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.point,
+.offer,
+.example-card,
+.step,
+.role {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.point .mono,
+.offer .mono,
+.step .mono,
+.example-label {
+  font: 12px var(--mono);
+  color: var(--acc);
+  margin-bottom: 8px;
+}
+.offer h3,
+.example-card h3,
+.role h3,
+.step h3 {
+  margin-bottom: 8px;
+}
+.offer p:last-child,
+.example-card p:last-child,
+.point p:last-child {
+  margin-bottom: 0;
+}
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+.example-card {
+  grid-column: span 2;
+}
+.example-card.wide {
+  grid-column: span 3;
+}
+.example-card ul,
+.role ul,
+.deliverables {
+  margin: 0;
+  padding-left: 1.1em;
+}
+.example-card li + li,
+.role li + li,
+.deliverables li + li {
+  margin-top: 8px;
+}
+.steps {
+  display: grid;
+  gap: 12px;
+}
+.career-log {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.career-log li {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.career-log .ref {
+  color: var(--amber);
+  font: 12px var(--mono);
+}
+.career-log .when {
+  font: 12px var(--mono);
+  color: var(--mute);
+}
+.credentials {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 0;
+}
+.summary-strip div {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  background: var(--surface);
+}
+.summary-strip strong {
+  display: block;
+  font-size: 20px;
+}
+.role header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+}
+.role + .role {
+  margin-top: 16px;
+}
+.role .status {
+  font: 12px var(--mono);
+  color: var(--mute);
+  white-space: nowrap;
+}
+.stack-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.chips li {
+  font: 12px var(--mono);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  padding: 6px 8px;
+  background: var(--raised);
+}
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+.faq summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+.faq details p:last-child {
+  margin-bottom: 16px;
+}
+.aside-note {
+  font: 13px var(--mono);
+  color: var(--mute);
+}
+.writing-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+.book-embed {
+  min-height: 720px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--surface);
+}
+@media (max-width: 1000px) and (min-width: 721px) {
+  .hero,
+  .credentials {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual {
+    justify-content: center;
+  }
+}
+@media (max-width: 720px) {
+  .hero,
+  .credentials,
+  .point-grid,
+  .offer-grid,
+  .summary-strip,
+  .stack-groups,
+  .writing-hero {
+    grid-template-columns: 1fr;
+  }
+  .writing-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero {
+    gap: 32px;
+  }
+  .hero-visual {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .hero-visual .terminal {
+    width: 100%;
+  }
+  .facts > div {
+    padding: 16px;
+  }
+  .facts dd {
+    font-size: 17px;
+  }
+  .example-card,
+  .example-card.wide {
+    grid-column: 1 / -1;
+  }
+  .career-log li {
+    grid-template-columns: 64px 1fr;
+  }
+  .career-log .when {
+    grid-column: 2;
+  }
+  .role header {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

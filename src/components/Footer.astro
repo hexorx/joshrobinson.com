@@ -1,34 +1,28 @@
 ---
-import { resume } from "../lib/resume";
-const linkedIn = resume.profiles.find(
-  (profile) => profile.network.toLowerCase() === "linkedin",
-);
+import { CONTACT_EMAIL } from "../consts";
 ---
 
 <footer class="container site-footer">
-  <span>
-    © {new Date().getFullYear()} Josh Robinson{" "}
-    <span class="credit">· built with Astro, served by Cloudflare</span>
-  </span>
+  <div>
+    <p>Josh Robinson · AI consulting for small and mid-sized businesses</p>
+    <p>
+      Newton, Iowa · In person across Des Moines and central Iowa · Remote
+      anywhere · <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    </p>
+    <p class="credit">built with Astro, served by Cloudflare</p>
+  </div>
   <nav aria-label="Social links">
+    <a href="/services">Services</a>
+    <a href="/track-record">Track record</a>
+    <a href="/ai-for-realtors">AI for Realtors</a>
+    <a href="/writing">Writing</a>
+    <a href="https://linkedin.com/in/hexorx" rel="me">
+      LinkedIn
+    </a>
     <a href="https://github.com/hexorx" rel="me">
       GitHub
     </a>
-    {linkedIn ? (
-      <a href={linkedIn.url} rel="me">
-        LinkedIn
-      </a>
-    ) : (
-      <a class="placeholder" href="/about/#contact">
-        LinkedIn [Placeholder]
-      </a>
-    )}
     <a href="/rss.xml">RSS</a>
-    {resume.email ? (
-      <a href={`mailto:${resume.email}`}>Email</a>
-    ) : (
-      <a href="/about/#contact">Email [Placeholder]</a>
-    )}
   </nav>
 </footer>
 <style>
@@ -41,11 +35,15 @@ const linkedIn = resume.profiles.find(
     font: 13px/1.6 var(--mono);
     color: var(--mute);
   }
+  p {
+    margin: 0;
+  }
   nav {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-end;
   }
   a {
     display: inline-flex;
@@ -54,13 +52,14 @@ const linkedIn = resume.profiles.find(
     text-decoration: none;
   }
   .credit {
-    display: inline;
+    margin-top: 8px;
   }
   @media (max-width: 720px) {
     .site-footer {
       flex-direction: column;
     }
     nav {
+      justify-content: flex-start;
       gap: 16px;
     }
   }

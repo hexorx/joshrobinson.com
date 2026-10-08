@@ -1,4 +1,5 @@
 /* Terminal design-brief.md sections 4–6. */
+@import "./consulting.css";
 :root {
   --bg: #0a0c0f;
   --surface: #11151a;

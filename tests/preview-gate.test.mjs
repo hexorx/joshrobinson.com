@@ -74,3 +74,25 @@ for (const [name, variables, ready, reason] of [
     if (reason) assert.ok((await readFile(summary, "utf8")).includes(reason));
   });
 }
+
+test("draft PRs cannot deploy even when public previews are enabled", () => {
+  const expression = workflow.split("  preview:\n")[1].match(/    if: (.+)/)[1];
+  const eligible = new Function("github", `return (${expression});`);
+  for (const [event, draft, headRepo, expected] of [
+    ["pull_request", true, "hexorx/joshrobinson.com", false],
+    ["pull_request", false, "hexorx/joshrobinson.com", true],
+    ["pull_request", false, "someone/fork", false],
+    ["push", false, "hexorx/joshrobinson.com", false],
+  ]) {
+    assert.equal(
+      eligible({
+        event_name: event,
+        repository: "hexorx/joshrobinson.com",
+        event: {
+          pull_request: { draft, head: { repo: { full_name: headRepo } } },
+        },
+      }),
+      expected,
+    );
+  }
+});

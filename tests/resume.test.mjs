@@ -59,3 +59,24 @@ test("public pages hide unfinished copy and never publish a phone number", () =>
   assert.match(html, /Independent technology consulting/);
   assert.doesNotMatch(html, /Bproto/);
 });
+
+test("AI production tenure is current across home, track record, resume and metadata", () => {
+  for (const route of ["index.html", "track-record/index.html"]) {
+    const text = readFileSync(join("dist", route), "utf8");
+    assert.match(text, /3\+ years|more than three years|than three years/);
+    assert.doesNotMatch(text, /2\+ years|two years/);
+  }
+  assert.match(
+    html,
+    /content="20\+ years building software and 3\+ years running AI in production/,
+  );
+  assert.match(
+    readFileSync("dist/resume/index.html", "utf8"),
+    /url=\/track-record/,
+  );
+  assert.ok(
+    resume.experience.some((role) =>
+      role.highlights?.some((text) => text.includes("more than three years")),
+    ),
+  );
+});

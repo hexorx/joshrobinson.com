@@ -23,6 +23,7 @@ for (const width of [1440, 390]) {
     });
     for (const route of routes) {
       await page.goto(route);
+      if (route === "/resume/") await page.waitForURL(/\/track-record\/?$/);
       // Count light-DOM headings only. The Cal.com embed adds its own h1
       // inside a shadow root on /book.
       await expect

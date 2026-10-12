@@ -8,6 +8,8 @@ const routes = [
   "/ai-for-realtors/",
   "/book/",
   "/writing/",
+  "/resume/",
+  "/404/",
 ];
 for (const width of [1440, 390]) {
   test(`global chrome and accessibility at ${width}px`, async ({ page }) => {
@@ -26,6 +28,8 @@ for (const width of [1440, 390]) {
       await expect
         .poll(() => page.evaluate(() => document.querySelectorAll("h1").length))
         .toBe(1);
+      await expect(page.locator(".logo")).toContainText("~/joshrobinson");
+      await expect(page.locator(".logo")).not.toContainText("@");
       const avatar = page.locator('[data-brand-mark="S01"]');
       await expect(avatar).toHaveCSS("width", "34px");
       await expect(avatar).toHaveCSS("height", "34px");
